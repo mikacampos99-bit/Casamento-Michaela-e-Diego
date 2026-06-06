@@ -1,12 +1,23 @@
 // Service Worker — Mika & Diego · Casamento 2026
-const CACHE_NAME = 'casamento-2026-v2';
+const CACHE_NAME = 'casamento-2026-v3';
+const BASE = '/Casamento-Michaela-e-Diego';
 
 // INSTALL
 self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll([
+        BASE + '/index.html',
+        BASE + '/manifest.json',
+        BASE + '/icon-192.png',
+        BASE + '/icon-512.png',
+      ]).catch(() => {});
+    })
+  );
   self.skipWaiting();
 });
 
-// ACTIVATE
+// ACTIVATE — limpa caches antigos
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -16,15 +27,23 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// FETCH — só cacheia arquivos do próprio domínio
+// FETCH — só cacheia arquivos do mesmo domínio/subpasta
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  
-  // Ignora tudo que não é do mesmo domínio (Firebase, APIs, Google Fonts etc)
+
+  // Ignora tudo externo (Firebase, APIs, Google Fonts)
   if (url.origin !== self.location.origin) return;
-  
-  // Só cacheia GET
+
+  // Só GET
   if (event.request.method !== 'GET') return;
+
+  // Rota raiz / redireciona para o index correto
+  if (url.pathname === BASE + '/' || url.pathname === BASE) {
+    event.respondWith(
+      caches.match(BASE + '/index.html').then(r => r || fetch(BASE + '/index.html'))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.open(CACHE_NAME).then(cache =>
