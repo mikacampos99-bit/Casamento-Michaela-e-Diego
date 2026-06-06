@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#B08A4A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Casamento 💍">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="mobile-web-app-capable" content="yes">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💍 Casamento & Lua de Mel · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1A1510;
+  --cream:#F6F2EC;
+  --warm:#EDE5D8;
+  --gold:#B08A4A;
+  --gold-light:#D4AF7A;
+  --gold-pale:#F5ECD9;
+  --rose:#8B3A52;
+  --rose-light:#C4768A;
+  --rose-pale:#F9EFF2;
+  --sage:#3D5C4A;
+  --sage-light:#6B9E80;
+  --sage-pale:#EDF5F0;
+  --muted:#7A6E62;
+  --border:#DDD4C6;
+  --danger:#B03030;
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ─── HERO ─── */
+.hero{
+  background:var(--ink);
+  color:var(--cream);
+  padding:64px 40px 52px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 60% at 20% 50%,rgba(176,138,74,.12),transparent),
+    radial-gradient(ellipse 40% 40% at 80% 20%,rgba(139,58,82,.1),transparent);
+}
+.hero-ornament{
+  font-size:11px;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold-light);opacity:.8;margin-bottom:18px;display:block;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:300;line-height:1.05;
+  margin-bottom:12px;position:relative;
+}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-date{
+  font-size:13px;letter-spacing:.12em;
+  color:rgba(246,242,236,.55);margin-top:8px;
+}
+.hero-pills{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px;
+}
+.hero-pill{
+  padding:4px 16px;border:1px solid rgba(176,138,74,.3);border-radius:100px;
+  font-size:11px;letter-spacing:.08em;color:rgba(246,242,236,.7);
+}
+.countdown-strip{
+  display:flex;gap:32px;justify-content:center;margin-top:28px;align-items:baseline;
+}
+.cd-block{text-align:center}
+.cd-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:600;line-height:1;color:var(--gold-light);
+  display:block;
+}
+.cd-lbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,242,236,.4);margin-top:2px}
+.cd-sep{color:rgba(176,138,74,.35);font-size:22px;align-self:center}
+
+/* ─── NAV TABS ─── */
+.site-nav{
+  background:var(--ink);
+  border-bottom:2px solid var(--gold);
+  display:flex;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.site-nav::-webkit-scrollbar{display:none}
+.nav-tab{
+  padding:14px 28px;
+  font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(246,242,236,.4);
+  cursor:pointer;border:none;background:none;
+  border-bottom:2px solid transparent;margin-bottom:-2px;
+  white-space:nowrap;
+  transition:color .2s,border-color .2s;
+  flex-shrink:0;
+}
+.nav-tab:hover{color:var(--gold-light)}
+.nav-tab.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+
+/* ─── PAGE PANELS ─── */
+.page-panel{display:none}
+.page-panel.active{display:block}
+
+/* ─── PROGRESS BAR ─── */
+.prog-bar-wrap{
+  background:var(--warm);padding:14px 40px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:14px;
+}
+.prog-label{font-size:11px;color:var(--muted);white-space:nowrap}
+.prog-bar{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  border-radius:2px;transition:width .5s ease;
+}
+.prog-pct{font-size:11px;font-weight:500;color:var(--gold);white-space:nowrap}
+
+/* ─── SHARED LAYOUT ─── */
+.panel-main{padding:36px 40px 80px;max-width:980px;margin:0 auto}
+
+/* ─── SECTION HEADINGS ─── */
+.sec-eyebrow{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:6px;font-weight:500}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--ink);margin-bottom:24px;line-height:1.15}
+
+/* ─── WEEK BLOCKS (cronograma) ─── */
+.week-group{margin-bottom:10px}
+.week-header{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 16px;background:var(--warm);
+  border:1px solid var(--border);border-radius:8px 8px 0 0;
+  cursor:pointer;user-select:none;transition:background .18s;
+}
+.week-header:hover{background:#E6DDD0}
+.week-num{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);min-width:64px}
+.week-date{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);flex:1}
+.week-badge{font-size:10px;padding:2px 10px;border-radius:20px;font-weight:500}
+.badge-urgent{background:#FDECEA;color:var(--danger)}
+.badge-normal{background:var(--gold-pale);color:#7A5020}
+.badge-ok{background:var(--sage-pale);color:var(--sage)}
+.week-chevron{color:var(--muted);font-size:11px;transition:transform .2s}
+.week-header.open .week-chevron{transform:rotate(180deg)}
+.week-tasks{border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden;display:none}
+.week-tasks.open{display:block}
+
+.add-task-row{
+  display:flex;gap:8px;padding:10px 16px;
+  background:#FAFAF8;border-top:1px solid var(--border);
+}
+.add-task-row input,.add-task-row select{
+  font-family:'DM Sans',sans-serif;font-size:12px;
+  border:1px solid var(--border);border-radius:6px;
+  padding:6px 10px;background:white;color:var(--ink);outline:none;
+}
+.add-task-row input{flex:1}
+.add-task-row input:focus,.add-task-row select:focus{border-color:var(--gold)}
+.btn-add-task{
+  background:var(--gold);color:white;border:none;border-radius:6px;
+  padding:6px 14px;font-size:12px;font-weight:500;cursor:pointer;
+}
+.btn-add-task:hover{background:#8A6A2E}
+
+.task-row{
+  display:grid;grid-template-columns:22px 1fr auto auto auto;
+  align-items:center;gap:10px;padding:11px 16px;
+  border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .12s;font-size:13px;
+}
+.task-row:last-child{border-bottom:none}
+.task-row:hover{background:#FAF8F5}
+.task-row.done-row{opacity:.5}
+.task-check{
+  width:18px;height:18px;border-radius:4px;border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:11px;transition:all .15s;
+}
+.task-row.done-row .task-check{background:var(--sage);border-color:var(--sage);color:white}
+.task-text{line-height:1.4}
+.task-row.done-row .task-text{text-decoration:line-through;color:var(--muted)}
+.task-category{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.task-type{font-size:10px;padding:2px 8px;border-radius:12px;white-space:nowrap}
+.type-pay{background:#FDECEA;color:var(--danger)}
+.type-do{background:var(--gold-pale);color:#7A5020}
+.type-confirm{background:#EEF2FF;color:#3730A3}
+.task-del{font-size:14px;color:var(--border);cursor:pointer;padding:2px 4px;line-height:1}
+.task-del:hover{color:var(--danger);background:#FDECEA;border-radius:3px}
+
+.add-week-wrap{margin-top:14px}
+.btn-add-week{
+  display:flex;align-items:center;gap:8px;
+  background:var(--warm);border:1px dashed var(--border);border-radius:8px;
+  padding:10px 18px;font-size:12px;color:var(--muted);cursor:pointer;width:100%;
+  transition:background .18s,color .18s;
+}
+.btn-add-week:hover{background:#E6DDD0;color:var(--gold)}
+.add-week-form{
+  background:white;border:1px solid var(--border);border-radius:8px;
+  padding:16px;margin-top:8px;display:none;flex-direction:column;gap:10px;
+}
+.add-week-form.open{display:flex}
+.add-week-form input,.add-week-form select{
+  font-family:'DM Sans',sans-serif;font-size:12px;
+  border:1px solid var(--border);border-radius:6px;padding:8px 12px;
+  background:white;color:var(--ink);outline:none;
+}
+.add-week-form input:focus{border-color:var(--gold)}
+.form-row{display:flex;gap:8px}
+.btn-confirm{background:var(--gold);color:white;border:none;border-radius:6px;padding:8px 20px;font-size:12px;cursor:pointer}
+.btn-cancel{background:var(--warm);color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:12px;cursor:pointer}
+
+/* ─── FINANCEIRO ─── */
+.fin-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:28px}
+.fin-card{padding:18px 20px;border-radius:10px;border:1px solid var(--border);background:white}
+.fin-card-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.fin-card-val{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;line-height:1}
+.fin-card.total .fin-card-val{color:var(--ink)}
+.fin-card.paid .fin-card-val{color:var(--sage)}
+.fin-card.pending .fin-card-val{color:var(--danger)}
+.cat-filter-wrap{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.cat-chip{
+  font-size:10px;padding:4px 12px;border-radius:20px;
+  border:1px solid var(--border);background:white;color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.cat-chip.active,.cat-chip:hover{background:var(--gold);color:white;border-color:var(--gold)}
+.fin-table-wrap{overflow-x:auto}
+.fin-table{width:100%;border-collapse:collapse;font-size:13px}
+.fin-table th{
+  text-align:left;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);padding:8px 12px;border-bottom:2px solid var(--border);
+  background:var(--warm);white-space:nowrap;
+}
+.fin-table td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.fin-table tr:hover td{background:#FAFAF7}
+.fin-table tr:last-child td{border-bottom:none}
+.fin-input{
+  width:100%;max-width:110px;font-family:'DM Sans',sans-serif;font-size:12px;
+  border:1px solid var(--border);border-radius:5px;padding:5px 8px;
+  background:white;color:var(--ink);outline:none;
+}
+.fin-input:focus{border-color:var(--gold)}
+.fin-name-input{
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  border:none;background:transparent;color:var(--ink);outline:none;width:100%;
+}
+.fin-name-input:focus{border-bottom:1px solid var(--gold)}
+.fin-cat-select{
+  font-family:'DM Sans',sans-serif;font-size:11px;
+  border:1px solid var(--border);border-radius:10px;padding:2px 8px;
+  background:white;color:var(--ink);outline:none;cursor:pointer;
+}
+.money-balance{color:var(--gold);font-weight:600}
+.money-pending{color:var(--danger)}
+.del-row-btn{background:none;border:none;color:var(--border);font-size:16px;cursor:pointer;padding:2px 6px;border-radius:4px}
+.del-row-btn:hover{color:var(--danger);background:#FDECEA}
+.btn-add-row{
+  display:flex;align-items:center;gap:8px;
+  background:var(--warm);border:1px dashed var(--border);border-radius:8px;
+  padding:10px 18px;font-size:12px;color:var(--muted);cursor:pointer;
+  width:100%;margin-top:12px;transition:background .18s,color .18s;
+}
+.btn-add-row:hover{background:#E6DDD0;color:var(--gold)}
+.totals-footer{
+  background:var(--ink);color:var(--cream);border-radius:10px;padding:20px 24px;margin-top:24px;
+}
+.tf-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.tf-row:last-child{border-bottom:none;padding-top:12px}
+.tf-lbl{font-size:11px;color:rgba(246,242,236,.5);letter-spacing:.05em}
+.tf-val{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600}
+.tf-val-paid{color:#8CC97A}
+.tf-val-pending{color:#E88080}
+.tf-val-total{color:var(--gold-light);font-size:28px}
+
+/* ─── LUA DE MEL ─── */
+.lm-hero{
+  background:var(--ink);color:var(--cream);
+  padding:52px 40px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.lm-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 60% at 30% 50%,rgba(176,138,74,.1),transparent),
+             radial-gradient(ellipse 40% 40% at 70% 30%,rgba(61,92,74,.12),transparent);
+}
+.lm-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(176,138,74,.2);
+  border-radius:100px;padding:4px 16px;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(246,242,236,.6);margin-bottom:18px;
+}
+.lm-hero h2{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);
+  font-weight:300;line-height:1.05;position:relative;
+}
+.lm-hero h2 em{font-style:italic;color:var(--gold-light)}
+.lm-sub{font-size:12px;color:rgba(246,242,236,.45);margin-top:8px;letter-spacing:.08em}
+.lm-cities{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.lm-city{padding:3px 12px;border:1px solid rgba(176,138,74,.2);border-radius:100px;font-size:10px;letter-spacing:.06em;color:rgba(246,242,236,.6)}
+.voo-box{
+  margin:20px auto 0;max-width:520px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(176,138,74,.15);
+  border-radius:10px;padding:14px 18px;text-align:left;position:relative;
+}
+.voo-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px;font-weight:500}
+.voo-text{font-size:12px;line-height:1.7;color:rgba(246,242,236,.7)}
+.voo-text strong{color:var(--cream);font-weight:500}
+
+.lm-stats{background:var(--warm);border-bottom:1px solid var(--border);padding:24px 40px}
+.lm-stats-inner{max-width:700px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:20px;text-align:center}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:400;color:var(--gold);line-height:1}
+.stat-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+.dest-section{margin-bottom:56px}
+.dest-head{display:flex;align-items:flex-start;gap:20px;padding-bottom:18px;border-bottom:2px solid var(--border);margin-bottom:20px}
+.dest-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--border);line-height:1;flex-shrink:0}
+.dest-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:500}
+.dest-name{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;color:var(--ink);line-height:1.1}
+.dest-name em{font-style:italic;color:var(--muted);font-size:1rem}
+.dest-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.transport-box{
+  background:var(--ink);color:var(--cream);border-radius:10px;
+  padding:14px 18px;margin-bottom:18px;display:flex;gap:12px;align-items:flex-start;
+}
+.tr-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.tr-text{font-size:12px;line-height:1.65;color:rgba(246,242,236,.75)}
+.tr-text strong{color:var(--gold-light);font-weight:500}
+.days-list{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.day-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:white;transition:border-color .18s,box-shadow .18s}
+.day-card:hover{border-color:#C5B59A;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.day-hdr{display:flex;align-items:center;gap:16px;padding:10px 18px;background:var(--warm);border-bottom:1px solid var(--border)}
+.day-dt{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--gold);min-width:2.8rem;line-height:1}
+.day-dt small{display:block;font-size:.65rem;font-family:'DM Sans',sans-serif;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+.day-title{font-size:.9rem;font-weight:500;color:var(--ink)}
+.day-sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.day-body{padding:14px 18px;font-size:.83rem;color:#5A4F44;line-height:1.8}
+.tip-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.tip-list li{display:flex;gap:10px;align-items:flex-start}
+.tip-list li::before{content:'→';color:var(--gold);flex-shrink:0;margin-top:1px}
+.hotel-block{margin-top:6px}
+.hotel-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:.5rem 0;border-top:2px solid var(--border);margin-bottom:10px}
+.hotel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.h-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;background:white;display:flex;flex-direction:column;gap:8px;transition:box-shadow .18s}
+.h-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.h-card.bk{border-color:#00357080;background:#f0f4ff}
+.h-card.hc{border-color:#0070C080;background:#f0f7ff}
+.h-card.ab{border-color:#E11D4880;background:#fff1f4}
+.h-plat{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.h-card.bk .h-plat{color:#003570}
+.h-card.hc .h-plat{color:#0070C0}
+.h-card.ab .h-plat{color:#E11D48}
+.h-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--ink);line-height:1.3}
+.h-rating{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--muted)}
+.h-badge{font-size:.68rem;font-weight:600;padding:.15rem .5rem;border-radius:4px;color:white}
+.h-card.bk .h-badge{background:#003570}
+.h-card.hc .h-badge{background:#0070C0}
+.h-card.ab .h-badge{background:#E11D48}
+.h-price{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--ink)}
+.h-price small{font-size:.68rem;font-family:'DM Sans',sans-serif;color:var(--muted);display:block}
+.h-tags{display:flex;flex-wrap:wrap;gap:4px}
+.h-tag{font-size:.65rem;padding:.18rem .5rem;border-radius:100px;border:1px solid currentColor;opacity:.65}
+.h-card.bk .h-tag{color:#003570}
+.h-card.hc .h-tag{color:#0070C0}
+.h-card.ab .h-tag{color:#E11D48}
+.h-note{font-size:.72rem;color:var(--muted);line-height:1.5}
+.h-note strong{color:var(--ink);font-weight:500}
+.h-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  text-decoration:none;padding:.7rem 1rem;border-radius:7px;
+  font-size:.75rem;font-weight:600;letter-spacing:.02em;
+  margin-top:auto;transition:opacity .18s,transform .15s;
+}
+.h-btn:hover{opacity:.85;transform:translateY(-1px)}
+.h-card.bk .h-btn{background:#003570;color:white}
+.h-card.hc .h-btn{background:#0070C0;color:white}
+.h-card.ab .h-btn{background:#E11D48;color:white}
+
+.divider-ornament{
+  display:flex;align-items:center;gap:16px;margin:40px 0;
+}
+.divider-ornament::before,.divider-ornament::after{content:'';flex:1;height:1px;background:var(--border)}
+.div-icon{font-size:1.1rem;color:var(--muted)}
+
+.budget-table-wrap{overflow-x:auto;margin-top:20px}
+.budget-table{width:100%;border-collapse:collapse;font-size:13px}
+.budget-table th{text-align:left;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:.7rem 14px;border-bottom:2px solid var(--border);background:var(--warm)}
+.budget-table td{padding:.85rem 14px;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:middle}
+.budget-table tr:last-child td{border-bottom:none;font-weight:600;color:var(--gold);font-size:.9rem}
+.budget-table td:last-child{text-align:right;font-weight:500;color:var(--ink)}
+.budget-table tr:last-child td:last-child{color:var(--gold)}
+
+/* ─── CHECKLIST ─── */
+.cl-group{margin-bottom:12px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:white}
+.cl-group-header{display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--ink);color:var(--cream)}
+.cl-group-icon{font-size:.95rem}
+.cl-group-title{font-size:.9rem;font-weight:400;flex:1}
+.cl-progress{font-size:.68rem;color:var(--gold-light);font-weight:600}
+.cl-items{display:flex;flex-direction:column}
+.cl-item{
+  display:flex;align-items:flex-start;gap:10px;padding:.8rem 18px;
+  border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .12s;font-size:.82rem;color:var(--muted);line-height:1.5;
+}
+.cl-item:last-child{border-bottom:none}
+.cl-item:hover{background:var(--gold-pale)}
+.cl-item input{display:none}
+.cl-check{
+  width:19px;height:19px;border:1.5px solid var(--border);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;font-size:.62rem;
+  color:transparent;flex-shrink:0;margin-top:1px;transition:all .18s;background:white;
+}
+.cl-item input:checked~.cl-check{background:var(--sage);border-color:var(--sage);color:white}
+.cl-item input:checked~span:last-child{text-decoration:line-through;opacity:.4}
+.cl-total{margin-top:24px;padding:22px;background:var(--ink);border-radius:12px;text-align:center}
+.cl-total-label{font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,242,236,.45);margin-bottom:12px}
+.cl-bar-bg{background:rgba(255,255,255,.1);border-radius:100px;height:6px;overflow:hidden;margin-bottom:8px}
+.cl-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:100px;transition:width .4s ease}
+.cl-total-count{font-family:'Cormorant Garamond',serif;font-size:1rem;color:white}
+
+/* ─── TIPS BOX ─── */
+.tips-box{background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:28px;margin-top:48px}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-top:20px}
+.tip-icon{font-size:1.2rem;margin-bottom:6px}
+.tip-title{font-size:.86rem;font-weight:500;color:var(--ink);margin-bottom:4px}
+.tip-text{font-size:.77rem;color:var(--muted);line-height:1.65}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
+  .hero,.panel-main{padding-left:20px;padding-right:20px}
+  .lm-hero{padding-left:20px;padding-right:20px}
+  .lm-stats{padding-left:20px;padding-right:20px}
+  .prog-bar-wrap{padding-left:20px;padding-right:20px}
+  .hotel-grid{grid-template-columns:1fr}
+  .task-row{grid-template-columns:22px 1fr auto}
+  .task-category,.task-del{display:none}
+  .dest-head{flex-direction:column;gap:8px}
+}
+</style>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(r => console.log('SW registrado:', r.scope))
+          .catch(e => console.log('SW erro:', e));
+      });
+    }
+  </script>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="hero-ornament">💍 Planejamento completo · 2026</span>
+  <h1>Mika <em>&</em> Diego</h1>
+  <p class="hero-date">Casamento · 26 de setembro de 2026</p>
+  <div class="hero-pills">
+    <span class="hero-pill">📋 Cronograma</span>
+    <span class="hero-pill">💰 Financeiro</span>
+    <span class="hero-pill">🇮🇹 Lua de Mel</span>
+    <span class="hero-pill">✅ Checklist</span>
+  </div>
+  <div class="countdown-strip" id="countdown"></div>
+</header>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <button class="nav-tab active" onclick="goTab('cronograma',this)">📋 Cronograma</button>
+  <button class="nav-tab" onclick="goTab('financeiro',this)">💰 Financeiro</button>
+  <button class="nav-tab" onclick="goTab('luademel',this)">🇮🇹 Lua de Mel</button>
+  <button class="nav-tab" onclick="goTab('checklist',this)">✅ Checklist</button>
+</nav>
+
+<!-- PROGRESS (cronograma) -->
+<div class="prog-bar-wrap" id="progBar">
+  <span class="prog-label">Tarefas concluídas</span>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <span class="prog-pct" id="progPct">0%</span>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TAB 1: CRONOGRAMA
+═══════════════════════════════════════ -->
+<div class="page-panel active" id="tab-cronograma">
+  <div class="panel-main">
+    <p class="sec-eyebrow">16 semanas até o grande dia</p>
+    <h2 class="sec-title">Cronograma de Atividades</h2>
+    <div id="timeline"></div>
+    <div class="add-week-wrap">
+      <button class="btn-add-week" onclick="toggleAddWeek()">＋ Adicionar período / bloco</button>
+      <div class="add-week-form" id="addWeekForm">
+        <div class="form-row">
+          <input type="text" id="newWeekLabel" placeholder="Ex: Semana 10" style="flex:1">
+          <input type="text" id="newWeekDates" placeholder="Ex: 10 – 16 Ago" style="flex:2">
+        </div>
+        <div class="form-row">
+          <select id="newWeekUrgency">
+            <option value="normal">Normal</option>
+            <option value="urgent">Urgente</option>
+            <option value="ok">Celebração</option>
+          </select>
+          <button class="btn-confirm" onclick="confirmAddWeek()">Adicionar</button>
+          <button class="btn-cancel" onclick="toggleAddWeek()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TAB 2: FINANCEIRO
+═══════════════════════════════════════ -->
+<div class="page-panel" id="tab-financeiro">
+  <div class="panel-main">
+    <p class="sec-eyebrow">Controle de custos</p>
+    <h2 class="sec-title">Financeiro do Casamento</h2>
+    <div class="fin-summary" id="finSummary"></div>
+    <div class="cat-filter-wrap" id="catFilter"></div>
+    <div class="fin-table-wrap">
+      <table class="fin-table">
+        <thead><tr><th>Fornecedor / Item</th><th>Categoria</th><th>Total (R$)</th><th>Pago (R$)</th><th>Saldo (R$)</th><th></th></tr></thead>
+        <tbody id="finBody"></tbody>
+      </table>
+    </div>
+    <button class="btn-add-row" onclick="addFinRow()">＋ Adicionar item</button>
+    <div class="totals-footer" id="totalsFooter"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TAB 3: LUA DE MEL
+═══════════════════════════════════════ -->
+<div class="page-panel" id="tab-luademel">
+
+  <!-- Hero LdM -->
+  <div class="lm-hero">
+    <div class="lm-badge">💍 Nossa Lua de Mel</div>
+    <h2>Bella <em>Italia</em></h2>
+    <p class="lm-sub">29 set — 14 out · 2026 · 15 dias · TAP Portugal confirmado</p>
+    <div class="lm-cities">
+      <span class="lm-city">Lisboa</span><span class="lm-city">Sorrento</span>
+      <span class="lm-city">Florença</span><span class="lm-city">Verona</span>
+      <span class="lm-city">Veneza</span><span class="lm-city">Roma</span>
+    </div>
+    <div class="voo-box">
+      <div class="voo-label">✈️ TAP Portugal · Confirmado</div>
+      <div class="voo-text">
+        <strong>GRU → FCO</strong> · 29/set 15h30 — 30/set 12h35 · escala Lisboa<br>
+        <strong>FCO → GRU</strong> · 13/out 13h35 — 14/out 18h35 · escala Lisboa
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="lm-stats">
+    <div class="lm-stats-inner">
+      <div><div class="stat-n">15</div><div class="stat-l">Dias</div></div>
+      <div><div class="stat-n">6</div><div class="stat-l">Cidades</div></div>
+      <div><div class="stat-n">14</div><div class="stat-l">Noites</div></div>
+      <div><div class="stat-n">TAP</div><div class="stat-l">Voo confirmado</div></div>
+    </div>
+  </div>
+
+  <div class="panel-main">
+
+    <!-- VOO IDA -->
+    <div class="dest-section">
+      <div class="dest-head">
+        <div class="dest-num">✈</div>
+        <div>
+          <div class="dest-eyebrow">29 de setembro · segunda-feira</div>
+          <div class="dest-name">Partida de São Paulo</div>
+          <div class="dest-sub">GRU 15h30 · TAP Portugal · escala Lisboa · FCO 30/set 12h35</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="div-icon">🍋</span></div>
+
+    <!-- SORRENTO -->
+    <div class="dest-section">
+      <div class="dest-head">
+        <div class="dest-num">01</div>
+        <div>
+          <div class="dest-eyebrow">30/set → 05/out · 5 noites</div>
+          <div class="dest-name">Sorrento <em>/ Costa Amalfitana</em></div>
+          <div class="dest-sub">Base estratégica para toda a costa</div>
+        </div>
+      </div>
+      <div class="transport-box"><div class="tr-icon">🚆</div><div class="tr-text"><strong>30/set · FCO → Nápoles → Sorrento</strong><br>Leonardo Express (30min) → Frecciarossa até Nápoles (~70min) → Circumvesuviana até Sorrento (~70min). Total ~3h.</div></div>
+      <div class="days-list">
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">30<small>set</small></div><div><div class="day-title">Chegada · Piazza Tasso · jantar romântico 🌅</div><div class="day-sub">Primeiro pôr do sol da Lua de Mel</div></div></div><div class="day-body"><ul class="tip-list"><li>Chegada após viagem longa — ritmo leve. Check-in e descanso.</li><li>Fim de tarde na Piazza Tasso e ruelas do centro histórico.</li><li>Jantar na Via San Cesareo — principal rua gastronômica.</li><li>Limoncello gelado com vista para o Golfo ao anoitecer. ❤️</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">01<small>out</small></div><div><div class="day-title">🚢 Capri</div><div class="day-sub">Ferry 25 min · ilha icônica</div></div></div><div class="day-body"><ul class="tip-list"><li>Ferry de Marina Piccola (~25 min). Comprar antecipado.</li><li>Teleférico até Capri Town — vistas únicas sobre o mediterrâneo.</li><li>Gruta Azul (Grotta Azzurra) de barco — chegar cedo da manhã.</li><li>Almoço em Anacapri — mais tranquilo e autêntico.</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">02<small>out</small></div><div><div class="day-title">🌊 Positano</div><div class="day-sub">A vila mais fotogênica da Itália</div></div></div><div class="day-body"><ul class="tip-list"><li>Ônibus SITA de Sorrento (~50 min) pela SS163.</li><li>Praia Spiaggia Grande — agradável em outubro.</li><li>Vielas coloridas, igrejas e lojinhas subindo os degraus.</li><li>Almoço com frutos do mar e vista para o mar.</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">03<small>out</small></div><div><div class="day-title">🏛️ Amalfi + Ravello</div><div class="day-sub">Catedral medieval + Terraço do Infinito</div></div></div><div class="day-body"><ul class="tip-list"><li>Manhã em Amalfi — Catedral Sant'Andrea, Chiostro del Paradiso.</li><li>Tarde em Ravello (ônibus ~20 min) — vila medieval acima das nuvens.</li><li>Villa Cimbrone — "Terraço do Infinito". 💫</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">04<small>out</small></div><div><div class="day-title">🌅 Dia livre</div><div class="day-sub">Beach club · barco · ou Pompeia</div></div></div><div class="day-body"><ul class="tip-list"><li>Opção A: beach club local — dia preguiçoso à beira-mar. 🏖️</li><li>Opção B: passeio de barco privativo pela costa.</li><li>Opção C: Pompeia — apenas 30 min de trem. 🏺</li><li>Jantar especial de despedida da costa amalfitana. 🥂</li></ul></div></div>
+      </div>
+      <div class="hotel-block">
+        <div class="hotel-label">🏨 Comparativo · Sorrento · 30/set→05/out</div>
+        <div class="hotel-grid">
+          <div class="h-card bk"><div class="h-plat">🔵 Booking.com</div><div class="h-name">Hotel Britannia ★★★</div><div class="h-rating"><span class="h-badge">9,0</span><span>Ótimo · 595 avaliações</span></div><div class="h-price">R$ 6.700<small>5 noites</small></div><div class="h-tags"><span class="h-tag">Centro histórico</span><span class="h-tag">Terraço</span><span class="h-tag">Jacuzzi</span></div><div class="h-note"><strong>Destaque:</strong> perto da estação e ferries</div><a class="h-btn" href="https://www.booking.com/hotel/it/hotelbritanniasorrento.html?checkin=2026-09-30&checkout=2026-10-05&no_rooms=1&group_adults=2" target="_blank">Reservar · Booking</a></div>
+          <div class="h-card hc"><div class="h-plat">🔷 Hotels.com</div><div class="h-name">Grand Hotel Excelsior Vittoria ★★★★★</div><div class="h-rating"><span class="h-badge">9,2</span><span>Excepcional · vista golfo</span></div><div class="h-price">R$ 12.000+<small>5 noites · premium</small></div><div class="h-tags"><span class="h-tag">Vista Vesúvio</span><span class="h-tag">Piscina</span><span class="h-tag">Spa</span></div><div class="h-note"><strong>Destaque:</strong> 10ª noite grátis · opção luxo</div><a class="h-btn" href="https://www.hotels.com/search.do?q-destination=Sorrento&q-check-in=2026-09-30&q-check-out=2026-10-05&q-rooms=1&q-room-0-adults=2" target="_blank">Buscar · Hotels.com</a></div>
+          <div class="h-card ab"><div class="h-plat">🔴 Airbnb</div><div class="h-name">Apt. com vista para o golfo</div><div class="h-rating"><span class="h-badge">★ Superhost</span><span>Centro histórico</span></div><div class="h-price">R$ 500–900<small>por noite</small></div><div class="h-tags"><span class="h-tag">Vista golfo</span><span class="h-tag">Terraço privativo</span><span class="h-tag">Cozinha</span></div><div class="h-note"><strong>Destaque:</strong> café da manhã com vista · total privacidade</div><a class="h-btn" href="https://www.airbnb.com.br/s/Sorrento--Itália/homes?checkin=2026-09-30&checkout=2026-10-05&adults=2" target="_blank">Buscar · Airbnb</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="div-icon">🌸</span></div>
+
+    <!-- FLORENÇA -->
+    <div class="dest-section">
+      <div class="dest-head">
+        <div class="dest-num">02</div>
+        <div>
+          <div class="dest-eyebrow">05/out → 07/out · 2 noites</div>
+          <div class="dest-name">Florença <em>/ Toscana</em></div>
+          <div class="dest-sub">Berço do Renascimento</div>
+        </div>
+      </div>
+      <div class="transport-box"><div class="tr-icon">🚆</div><div class="tr-text"><strong>05/out · Sorrento → Nápoles → Florença</strong><br>Circumvesuviana → Nápoles → Frecciarossa (~3h). Total ~4h30.</div></div>
+      <div class="days-list">
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">05<small>out</small></div><div><div class="day-title">Chegada · Oltrarno · Ponte Vecchio ao entardecer</div></div></div><div class="day-body"><ul class="tip-list"><li>Ponte Vecchio ao entardecer — luz dourada no Rio Arno. 🌅</li><li>Aperitivo no Oltrarno — mais autêntico, menos turístico.</li><li>Jantar com bistecca à florentina e vinho toscano.</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">06<small>out</small></div><div><div class="day-title">🌾 Excursão Toscana ou museus</div></div></div><div class="day-body"><ul class="tip-list"><li><strong>Opção A:</strong> Siena (recomendada) — trem 1h30. Piazza del Campo. ✨</li><li><strong>Opção B:</strong> Pisa + Lucca. <strong>Opção C:</strong> Chianti 🍷</li><li>Uffizi ou Accademia: reservar com antecedência!</li></ul></div></div>
+      </div>
+      <div class="hotel-block">
+        <div class="hotel-label">🏨 Comparativo · Florença · 05/out→07/out</div>
+        <div class="hotel-grid">
+          <div class="h-card bk"><div class="h-plat">🔵 Booking.com</div><div class="h-name">Hotel De Lanzi ★★★</div><div class="h-rating"><span class="h-badge">8,2</span><span>Muito bom · 2.507 avaliações</span></div><div class="h-price">R$ 2.106<small>2 noites</small></div><div class="h-tags"><span class="h-tag">200m do Duomo</span><span class="h-tag">Wi-Fi grátis</span></div><div class="h-note"><strong>Destaque:</strong> localização imbatível · a pé dos Uffizi</div><a class="h-btn" href="https://www.booking.com/hotel/it/msnhotel-dei-lanzi.html?checkin=2026-10-05&checkout=2026-10-07&no_rooms=1&group_adults=2" target="_blank">Reservar · Booking</a></div>
+          <div class="h-card hc"><div class="h-plat">🔷 Hotels.com</div><div class="h-name">Hotel Lungarno ★★★★★</div><div class="h-rating"><span class="h-badge">9,4</span><span>Excepcional · vista Arno</span></div><div class="h-price">R$ 4.500–6.000<small>2 noites</small></div><div class="h-tags"><span class="h-tag">Vista Ponte Vecchio</span><span class="h-tag">Spa</span></div><div class="h-note"><strong>Destaque:</strong> experiência icônica · grupo Ferragamo</div><a class="h-btn" href="https://www.hotels.com/search.do?q-destination=Florence&q-check-in=2026-10-05&q-check-out=2026-10-07&q-rooms=1&q-room-0-adults=2" target="_blank">Buscar · Hotels.com</a></div>
+          <div class="h-card ab"><div class="h-plat">🔴 Airbnb</div><div class="h-name">Palácio histórico vista Duomo</div><div class="h-rating"><span class="h-badge">★ Superhost</span><span>Centro histórico</span></div><div class="h-price">R$ 600–1.100<small>por noite</small></div><div class="h-tags"><span class="h-tag">Vista Duomo</span><span class="h-tag">Séc. XV</span><span class="h-tag">Terraço</span></div><div class="h-note"><strong>Destaque:</strong> café da manhã renascentista do terraço</div><a class="h-btn" href="https://www.airbnb.com.br/s/Florença--Itália/homes?checkin=2026-10-05&checkout=2026-10-07&adults=2" target="_blank">Buscar · Airbnb</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="div-icon">💕</span></div>
+
+    <!-- VERONA -->
+    <div class="dest-section">
+      <div class="dest-head">
+        <div class="dest-num">03</div>
+        <div>
+          <div class="dest-eyebrow">07/out → 08/out · 1 noite</div>
+          <div class="dest-name">Verona <em>/ Romeu e Julieta</em></div>
+          <div class="dest-sub">A cidade do amor — parada perfeita para casais 💕</div>
+        </div>
+      </div>
+      <div class="transport-box"><div class="tr-icon">🚆</div><div class="tr-text"><strong>07/out · Florença → Verona Porta Nuova</strong><br>Frecciarossa direto ~1h10 min.</div></div>
+      <div class="days-list">
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">07<small>out</small></div><div><div class="day-title">Verona em 1 dia perfeito 💕</div><div class="day-sub">Arena · Julieta · centro medieval · ópera</div></div></div><div class="day-body"><ul class="tip-list"><li>Arena di Verona — anfiteatro romano séc. I. Verificar se há ópera! 🎭</li><li>Casa de Julieta — a varanda famosa. ❤️</li><li>Piazza delle Erbe → Torre dei Lamberti (panorama).</li><li>Jantar com Amarone, Soave e Bardolino. 🍷</li></ul></div></div>
+      </div>
+      <div class="hotel-block">
+        <div class="hotel-label">🏨 Comparativo · Verona · 07/out→08/out</div>
+        <div class="hotel-grid">
+          <div class="h-card bk"><div class="h-plat">🔵 Booking.com</div><div class="h-name">Hotel Mastino ★★★</div><div class="h-rating"><span class="h-badge">8,3</span><span>Muito bom · 4.669 avaliações</span></div><div class="h-price">R$ 842<small>1 noite</small></div><div class="h-tags"><span class="h-tag">Centro histórico</span><span class="h-tag">Spa</span></div><div class="h-note"><strong>Destaque:</strong> spa incluso · ideal para relaxar</div><a class="h-btn" href="https://www.booking.com/hotel/it/hotelmastino.html?checkin=2026-10-07&checkout=2026-10-08&no_rooms=1&group_adults=2" target="_blank">Reservar · Booking</a></div>
+          <div class="h-card hc"><div class="h-plat">🔷 Hotels.com</div><div class="h-name">Hotel Milano & SPA ★★★</div><div class="h-rating"><span class="h-badge">9,1</span><span>Excepcional · vista Arena</span></div><div class="h-price">R$ 950–1.200<small>1 noite</small></div><div class="h-tags"><span class="h-tag">Rooftop jacuzzi</span><span class="h-tag">Vista Arena</span></div><div class="h-note"><strong>Destaque:</strong> jacuzzi no rooftop com vista para a Arena 🌙</div><a class="h-btn" href="https://www.hotels.com/search.do?q-destination=Verona&q-check-in=2026-10-07&q-check-out=2026-10-08&q-rooms=1&q-room-0-adults=2" target="_blank">Buscar · Hotels.com</a></div>
+          <div class="h-card ab"><div class="h-plat">🔴 Airbnb</div><div class="h-name">Apartamento centro histórico</div><div class="h-rating"><span class="h-badge">★ Superhost</span><span>Perto da Arena</span></div><div class="h-price">R$ 400–700<small>1 noite</small></div><div class="h-tags"><span class="h-tag">Centro medieval</span><span class="h-tag">Cozinha</span></div><div class="h-note"><strong>Destaque:</strong> acordar no coração de Verona</div><a class="h-btn" href="https://www.airbnb.com.br/s/Verona--Itália/homes?checkin=2026-10-07&checkout=2026-10-08&adults=2" target="_blank">Buscar · Airbnb</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="div-icon">🚤</span></div>
+
+    <!-- VENEZA -->
+    <div class="dest-section">
+      <div class="dest-head">
+        <div class="dest-num">04</div>
+        <div>
+          <div class="dest-eyebrow">08/out → 10/out · 2 noites</div>
+          <div class="dest-name">Veneza <em>/ La Serenissima</em></div>
+          <div class="dest-sub">Na ilha histórica — não Mestre!</div>
+        </div>
+      </div>
+      <div class="transport-box"><div class="tr-icon">🚆</div><div class="tr-text"><strong>08/out · Verona → Venezia Santa Lucia</strong><br>Frecciarossa direto ~1h10. Estação fica na ilha histórica. Vaporetto pelo Grand Canal.</div></div>
+      <div class="days-list">
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">08<small>out</small></div><div><div class="day-title">Chegada · Grand Canal · San Marco 🚤</div></div></div><div class="day-body"><ul class="tip-list"><li>Vaporetto linha 1 pelo Grand Canal — não pegar táxi aquático.</li><li>Piazza San Marco ao entardecer — Basílica, Campanile.</li><li>Ponte Rialto ao anoitecer iluminado. 🌙</li><li>Cicchetti (tapas venezianas) num bacaro do Cannaregio.</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">09<small>out</small></div><div><div class="day-title">🏝️ Murano + Burano</div><div class="day-sub">Vidro artesanal e casas coloridas</div></div></div><div class="day-body"><ul class="tip-list"><li>Murano — vaporetto ~15 min. Demonstração de sopro de vidro. 🫧</li><li>Burano — vaporetto ~45 min. A mais fotogênica do mundo. 📸</li><li>Almoço de frutos do mar fresquíssimos em Burano.</li><li>Jantar: risotto di seppie ou bigoli in salsa. 🥂</li></ul></div></div>
+      </div>
+      <div class="hotel-block">
+        <div class="hotel-label">🏨 Comparativo · Veneza histórica · 08/out→10/out</div>
+        <div class="hotel-grid">
+          <div class="h-card bk"><div class="h-plat">🔵 Booking.com</div><div class="h-name">Hotel Rialto ★★★★</div><div class="h-rating"><span class="h-badge">8,3</span><span>Muito bom · 2.509 avaliações</span></div><div class="h-price">R$ 3.280<small>2 noites</small></div><div class="h-tags"><span class="h-tag">Vista Ponte Rialto</span><span class="h-tag">Grand Canal</span></div><div class="h-note"><strong>Destaque:</strong> vista direta do Ponte Rialto</div><a class="h-btn" href="https://www.booking.com/hotel/it/rialto.html?checkin=2026-10-08&checkout=2026-10-10&no_rooms=1&group_adults=2" target="_blank">Reservar · Booking</a></div>
+          <div class="h-card hc"><div class="h-plat">🔷 Hotels.com</div><div class="h-name">NH Palazzo dei Dogi ★★★★★</div><div class="h-rating"><span class="h-badge">9,0</span><span>Excepcional · Cannaregio</span></div><div class="h-price">R$ 4.500–6.000<small>2 noites</small></div><div class="h-tags"><span class="h-tag">Pier privativo</span><span class="h-tag">Jardim secreto</span></div><div class="h-note"><strong>Destaque:</strong> pier exclusivo para gôndola · palácio histórico</div><a class="h-btn" href="https://www.hotels.com/search.do?q-destination=Venice&q-check-in=2026-10-08&q-check-out=2026-10-10&q-rooms=1&q-room-0-adults=2" target="_blank">Buscar · Hotels.com</a></div>
+          <div class="h-card ab"><div class="h-plat">🔴 Airbnb</div><div class="h-name">Palazzo com vista para o canal</div><div class="h-rating"><span class="h-badge">★ Superhost</span><span>Cannaregio · histórico</span></div><div class="h-price">R$ 700–1.400<small>por noite</small></div><div class="h-tags"><span class="h-tag">Vista canal</span><span class="h-tag">Palácio veneziano</span></div><div class="h-note"><strong>Destaque:</strong> acordar com barcos passando no canal</div><a class="h-btn" href="https://www.airbnb.com.br/s/Veneza--Itália/homes?checkin=2026-10-08&checkout=2026-10-10&adults=2" target="_blank">Buscar · Airbnb</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="div-icon">🏟️</span></div>
+
+    <!-- ROMA -->
+    <div class="dest-section">
+      <div class="dest-head">
+        <div class="dest-num">05</div>
+        <div>
+          <div class="dest-eyebrow">10/out → 13/out · 3 noites</div>
+          <div class="dest-name">Roma <em>/ A Cidade Eterna</em></div>
+          <div class="dest-sub">Encerramento grandioso da Lua de Mel 🥂</div>
+        </div>
+      </div>
+      <div class="transport-box"><div class="tr-icon">🚆</div><div class="tr-text"><strong>10/out · Venezia Santa Lucia → Roma Termini</strong><br>Frecciarossa direto ~3h40.</div></div>
+      <div class="days-list">
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">10<small>out</small></div><div><div class="day-title">Chegada · Bairro Monti · jantar romano 🍝</div></div></div><div class="day-body"><ul class="tip-list"><li>Bairro Monti — ruelas medievais, galerias, bares animados.</li><li>Jantar em osteria — cacio e pepe, carbonara. 🍝</li><li>Coliseu iluminado à noite. 🌙</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">11<small>out</small></div><div><div class="day-title">🏛️ Roma Antiga · Trevi · Espanholas</div></div></div><div class="day-body"><ul class="tip-list"><li>Coliseu + Fórum Romano + Palatino — reservar em colosseo.it.</li><li>Fontana di Trevi ao fim da tarde — jogar a moeda juntos! 🪙💕</li><li>Passeggiata: Piazza di Spagna → Via Condotti.</li></ul></div></div>
+        <div class="day-card"><div class="day-hdr"><div class="day-dt">12<small>out</small></div><div><div class="day-title">⛪ Vaticano + Trastevere</div><div class="day-sub">Último dia · jantar final de Lua de Mel 🥂❤️</div></div></div><div class="day-body"><ul class="tip-list"><li>Museus Vaticanos + Capela Sistina — reservar com antecedência. 🎨</li><li>Basílica de São Pedro — subir a cúpula: vista panorâmica.</li><li>Trastevere à tarde — o bairro mais charmoso de Roma. 🌿</li><li>Jantar final de Lua de Mel em Trastevere. 🥂❤️🇮🇹</li></ul></div></div>
+      </div>
+      <div class="hotel-block">
+        <div class="hotel-label">🏨 Comparativo · Roma · 10/out→13/out</div>
+        <div class="hotel-grid">
+          <div class="h-card bk"><div class="h-plat">🔵 Booking.com</div><div class="h-name">Hotel Ferrarese ★★</div><div class="h-rating"><span class="h-badge">8,6</span><span>Ótimo · 3.424 avaliações</span></div><div class="h-price">R$ 2.902<small>3 noites</small></div><div class="h-tags"><span class="h-tag">Esquilino</span><span class="h-tag">24h recepção</span></div><div class="h-note"><strong>Destaque:</strong> melhor custo-benefício · perto do metrô</div><a class="h-btn" href="https://www.booking.com/hotel/it/ferrarese-roma.html?checkin=2026-10-10&checkout=2026-10-13&no_rooms=1&group_adults=2" target="_blank">Reservar · Booking</a></div>
+          <div class="h-card hc"><div class="h-plat">🔷 Hotels.com</div><div class="h-name">Hotel Artemide ★★★★</div><div class="h-rating"><span class="h-badge">9,0</span><span>Excepcional · rooftop</span></div><div class="h-price">R$ 4.500–5.500<small>3 noites</small></div><div class="h-tags"><span class="h-tag">Rooftop Ambrosia</span><span class="h-tag">Spa</span><span class="h-tag">Minibar grátis</span></div><div class="h-note"><strong>Destaque:</strong> rooftop panorâmico de Roma</div><a class="h-btn" href="https://www.hotels.com/search.do?q-destination=Rome&q-check-in=2026-10-10&q-check-out=2026-10-13&q-rooms=1&q-room-0-adults=2" target="_blank">Buscar · Hotels.com</a></div>
+          <div class="h-card ab"><div class="h-plat">🔴 Airbnb</div><div class="h-name">Apt. em Trastevere ou Monti</div><div class="h-rating"><span class="h-badge">★ Superhost</span><span>Bairros autênticos</span></div><div class="h-price">R$ 400–800<small>por noite</small></div><div class="h-tags"><span class="h-tag">Trastevere</span><span class="h-tag">Terraço privativo</span></div><div class="h-note"><strong>Destaque:</strong> jantar de Lua de Mel do terraço privativo</div><a class="h-btn" href="https://www.airbnb.com.br/s/Roma--Itália/homes?checkin=2026-10-10&checkout=2026-10-13&adults=2" target="_blank">Buscar · Airbnb</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="div-icon">✈️</span></div>
+
+    <!-- VOO VOLTA -->
+    <div class="dest-section">
+      <div class="dest-head">
+        <div class="dest-num">✈</div>
+        <div>
+          <div class="dest-eyebrow">13 de outubro · terça-feira</div>
+          <div class="dest-name">Retorno para São Paulo</div>
+          <div class="dest-sub">FCO 13h35 · TAP Portugal · escala Lisboa · GRU 14/out 18h35</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUDGET LDM -->
+    <div style="margin-top:48px">
+      <p class="sec-eyebrow">Estimativa financeira</p>
+      <h2 class="sec-title" style="font-size:1.8rem">Hospedagem · opção Booking.com</h2>
+      <div class="budget-table-wrap">
+        <table class="budget-table">
+          <thead><tr><th>Cidade</th><th>Hotel</th><th>Período</th><th>Noites</th><th>Total BRL</th></tr></thead>
+          <tbody>
+            <tr><td>🍋 Sorrento</td><td>Hotel Britannia ★★★</td><td>30/set–05/out</td><td>5</td><td>R$ 6.700</td></tr>
+            <tr><td>🌸 Florença</td><td>Hotel De Lanzi ★★★</td><td>05–07/out</td><td>2</td><td>R$ 2.106</td></tr>
+            <tr><td>💕 Verona</td><td>Hotel Mastino ★★★</td><td>07–08/out</td><td>1</td><td>R$ 842</td></tr>
+            <tr><td>🚤 Veneza</td><td>Hotel Rialto ★★★★</td><td>08–10/out</td><td>2</td><td>R$ 3.280</td></tr>
+            <tr><td>🏟️ Roma</td><td>Hotel Ferrarese ★★</td><td>10–13/out</td><td>3</td><td>R$ 2.902</td></tr>
+            <tr><td colspan="4"><strong>Total · 13 noites</strong></td><td>~R$ 15.830</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TIPS LDM -->
+    <div class="tips-box">
+      <p class="sec-eyebrow">Antes de viajar</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400">Dicas práticas</h2>
+      <div class="tips-grid">
+        <div><div class="tip-icon">🎟️</div><div class="tip-title">Reserve atrações</div><div class="tip-text">Coliseu, Uffizi, Vaticano — reservar 1–2 meses antes. Sem reserva: 2–4h de fila.</div></div>
+        <div><div class="tip-icon">🏨</div><div class="tip-title">Hotéis primeiro</div><div class="tip-text">Outubro ainda é alta temporada. Sorrento e Veneza esgotam rápido. Avise Lua de Mel!</div></div>
+        <div><div class="tip-icon">🚆</div><div class="tip-title">Trens Trenitalia</div><div class="tip-text">Comprar antecipado em trenitalia.com — preços caem bastante. Italo também é opção.</div></div>
+        <div><div class="tip-icon">💶</div><div class="tip-title">Taxa turística</div><div class="tip-text">€3–€10/pessoa/noite paga no hotel. ~€150–200 no total. Não inclusa nas reservas.</div></div>
+        <div><div class="tip-icon">🌡️</div><div class="tip-title">Clima em outubro</div><div class="tip-text">18–24°C. Jaqueta leve + guarda-chuva compacto. Chuva ocasional no norte.</div></div>
+        <div><div class="tip-icon">💍</div><div class="tip-title">Dica Lua de Mel</div><div class="tip-text">Avisem todos os hotéis sobre a Lua de Mel — upgrades, pétalas e champanhe são comuns!</div></div>
+      </div>
+    </div>
+
+  </div><!-- /panel-main -->
+</div><!-- /tab-luademel -->
+
+<!-- ═══════════════════════════════════════
+     TAB 4: CHECKLIST LUA DE MEL
+═══════════════════════════════════════ -->
+<div class="page-panel" id="tab-checklist">
+  <div class="panel-main">
+    <p class="sec-eyebrow">Organização completa</p>
+    <h2 class="sec-title">Checklist Lua de Mel 🇮🇹</h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:28px">Clique em cada item para marcar como concluído. Progresso salvo automaticamente.</p>
+
+    <div id="cl-container"></div>
+
+    <div class="cl-total">
+      <div class="cl-total-label">Progresso geral</div>
+      <div class="cl-bar-bg"><div class="cl-bar-fill" id="cl-bar" style="width:0%"></div></div>
+      <div class="cl-total-count" id="cl-count">0 de 0 itens</div>
+    </div>
+  </div>
+</div>
+
+<footer style="background:var(--ink);color:rgba(246,242,236,.4);text-align:center;padding:32px;font-size:11px;line-height:2;border-top:1px solid rgba(255,255,255,.06)">
+  <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:8px">Mika & Diego · 2026</p>
+  <p>Casamento 26/09 · Lua de Mel Itália 29/set–14/out</p>
+  <p style="margin-top:4px;opacity:.5;font-size:.7rem">Preços BRL sujeitos à variação cambial. Confirme antes de reservar.</p>
+</footer>
+
+<script>
+// ════════ COUNTDOWN ════════
+const WEDDING=new Date('2026-09-26');
+function updateCountdown(){
+  const d=Math.max(0,Math.floor((WEDDING-new Date())/86400000));
+  document.getElementById('countdown').innerHTML=`
+    <div class="cd-block"><span class="cd-num">${Math.floor(d/30)}</span><span class="cd-lbl">meses</span></div>
+    <span class="cd-sep">·</span>
+    <div class="cd-block"><span class="cd-num">${Math.floor(d/7)}</span><span class="cd-lbl">semanas</span></div>
+    <span class="cd-sep">·</span>
+    <div class="cd-block"><span class="cd-num">${d}</span><span class="cd-lbl">dias</span></div>`;
+}
+updateCountdown();
+
+// ════════ TABS ════════
+function goTab(id,btn){
+  document.querySelectorAll('.page-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('progBar').style.display=(id==='cronograma')?'flex':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ════════ STORAGE ════════
+const SK_W='wed_weeks_v4',SK_T='wed_tasks_v4',SK_F='wed_fin_v4',SK_CL='wed_cl_v4';
+async function sg(k){try{const r=await window.storage.get(k,true);return r?JSON.parse(r.value):null}catch{return null}}
+async function ss(k,v){try{await window.storage.set(k,JSON.stringify(v),true)}catch(e){}}
+
+// ════════ CRONOGRAMA ════════
+const DEF_WEEKS=[
+  {label:'Semana 1',dates:'09–15 Jun',urgency:'urgent',tasks:[
+    {text:'Confirmar lista final de convidados com assessoria',cat:'Convidados',type:'do'},
+    {text:'Definir texto e arte do convite (físico ou digital)',cat:'Convites',type:'do'},
+    {text:'Pagar parcela — Maquiagem e Cabelo',cat:'Financeiro',type:'pay'},
+    {text:'Pesquisar modelos de aliança (3 opções shortlist)',cat:'Alianças',type:'do'},
+    {text:'Pagar saldo — Bar (+R$2.000)',cat:'Financeiro',type:'pay'},
+  ]},
+  {label:'Semana 2',dates:'16–22 Jun',urgency:'urgent',tasks:[
+    {text:'Enviar ou imprimir convites',cat:'Convites',type:'do'},
+    {text:'Ir à joalheria — prova e escolha das alianças',cat:'Alianças',type:'do'},
+    {text:'Pagar parcela — Decoração',cat:'Financeiro',type:'pay'},
+    {text:'Criar planilha de confirmação (RSVP)',cat:'Convidados',type:'do'},
+  ]},
+  {label:'Semana 3',dates:'23–29 Jun',urgency:'normal',tasks:[
+    {text:'Encomendar alianças (prazo de entrega ~30 dias)',cat:'Alianças',type:'do'},
+    {text:'Pagar parcela — Maquiagem e Cabelo',cat:'Financeiro',type:'pay'},
+    {text:'Acompanhar confirmações — meta: 60% respondido',cat:'Convidados',type:'do'},
+    {text:'Reunião com assessoria: alinhamento geral',cat:'Assessoria',type:'do'},
+  ]},
+  {label:'Semana 4',dates:'30 Jun–06 Jul',urgency:'normal',tasks:[
+    {text:'Fechar número final de convidados com buffet',cat:'Buffet',type:'do'},
+    {text:'Pagar parcela — Decoração',cat:'Financeiro',type:'pay'},
+    {text:'Reunião com DJ: setlist e momentos-chave',cat:'DJ',type:'do'},
+    {text:'Confirmar cronograma do dia com músico',cat:'Música',type:'do'},
+  ]},
+  {label:'Semana 5–6',dates:'07–20 Jul',urgency:'normal',tasks:[
+    {text:'Retirar alianças (conferir gravação e tamanho)',cat:'Alianças',type:'do'},
+    {text:'Pagar parcela — Maquiagem e Cabelo',cat:'Financeiro',type:'pay'},
+    {text:'Fechar prazo de RSVP (confirmação final)',cat:'Convidados',type:'do'},
+    {text:'Pagar saldo — Decoração',cat:'Financeiro',type:'pay'},
+    {text:'Teste de maquiagem e cabelo',cat:'Noiva',type:'do'},
+  ]},
+  {label:'Semana 7–8',dates:'21 Jul–03 Ago',urgency:'normal',tasks:[
+    {text:'Enviar números finais ao buffet',cat:'Buffet',type:'do'},
+    {text:'Confirmar horário com todos os fornecedores',cat:'Geral',type:'confirm'},
+    {text:'Reunião final com assessoria + cronograma do dia',cat:'Assessoria',type:'do'},
+    {text:'Montar lista de músicas especiais para DJ e músico',cat:'Música',type:'do'},
+  ]},
+  {label:'Semana 9–12',dates:'04 Ago–31 Ago',urgency:'normal',tasks:[
+    {text:'Segunda prova do vestido (se necessário)',cat:'Noiva',type:'do'},
+    {text:'Preparar envelopes / lembranças para convidados',cat:'Detalhes',type:'do'},
+    {text:'Confirmar logística: transporte, estacionamento',cat:'Logística',type:'confirm'},
+    {text:'Checar documentação cartório (se civil junto)',cat:'Burocracia',type:'do'},
+  ]},
+  {label:'Semana 13–15',dates:'01–21 Set',urgency:'normal',tasks:[
+    {text:'Ligar para cada fornecedor — confirmação final',cat:'Geral',type:'confirm'},
+    {text:'Preparar pagamentos finais / envelopes gorjeta',cat:'Financeiro',type:'do'},
+    {text:'Ensaio: entrada, votos, saída',cat:'Cerimônia',type:'do'},
+    {text:'Organizar itens do dia: alianças, bouquet, documentos',cat:'Detalhes',type:'do'},
+  ]},
+  {label:'Semana do Casamento',dates:'22–26 Set',urgency:'ok',tasks:[
+    {text:'Check final com assessoria: cronograma hora a hora',cat:'Assessoria',type:'confirm'},
+    {text:'Organizar kit noiva + kit emergência',cat:'Noiva',type:'do'},
+    {text:'Descansar e curtir ✨',cat:'Bem-estar',type:'confirm'},
+  ]},
+];
+
+let weeks=[...DEF_WEEKS];
+let taskDone={};
+
+function tid(wi,ti){return`w${wi}t${ti}`}
+function typeClass(t){return t==='pay'?'type-pay':t==='confirm'?'type-confirm':'type-do'}
+function typeLabel(t){return t==='pay'?'Pagar':t==='confirm'?'Confirmar':'Fazer'}
+function badgeClass(u){return u==='urgent'?'badge-urgent':u==='ok'?'badge-ok':'badge-normal'}
+function badgeLabel(u){return u==='urgent'?'Urgente':u==='ok'?'🎉':'Próximo'}
+
+async function saveWeeks(){await ss(SK_W,weeks)}
+async function saveTasks(){await ss(SK_T,taskDone)}
+
+function renderTimeline(){
+  const container=document.getElementById('timeline');
+  container.innerHTML='';
+  weeks.forEach((w,wi)=>{
+    const isFirst=wi<2;
+    const allDone=w.tasks.length>0&&w.tasks.every((_,ti)=>taskDone[tid(wi,ti)]);
+    const group=document.createElement('div');group.className='week-group';
+
+    const hdr=document.createElement('div');
+    hdr.className=`week-header${isFirst?' open':''}`;
+    hdr.innerHTML=`<span class="week-num">${w.label}</span><span class="week-date">${w.dates}</span><span class="week-badge ${allDone?'badge-ok':badgeClass(w.urgency)}">${allDone?'✓ Feito':badgeLabel(w.urgency)}</span><span class="week-chevron">▼</span>`;
+    hdr.addEventListener('click',()=>{hdr.classList.toggle('open');body.classList.toggle('open')});
+
+    const body=document.createElement('div');
+    body.className=`week-tasks${isFirst?' open':''}`;
+
+    // add-task row
+    const ar=document.createElement('div');ar.className='add-task-row';
+    ar.innerHTML=`<input type="text" placeholder="Nova atividade..." id="nt${wi}">
+      <select id="nc${wi}"><option>Geral</option><option>Financeiro</option><option>Convites</option><option>Convidados</option><option>Alianças</option><option>Noiva</option><option>Buffet</option><option>Assessoria</option><option>DJ</option><option>Música</option><option>Cerimônia</option><option>Detalhes</option><option>Logística</option><option>Burocracia</option></select>
+      <select id="ny${wi}"><option value="do">Fazer</option><option value="pay">Pagar</option><option value="confirm">Confirmar</option></select>
+      <button class="btn-add-task" onclick="addTask(${wi})">+Add</button>`;
+    body.appendChild(ar);
+
+    w.tasks.forEach((t,ti)=>{
+      const id=tid(wi,ti);
+      const isDone=!!taskDone[id];
+      const row=document.createElement('div');
+      row.className=`task-row${isDone?' done-row':''}`;
+      row.innerHTML=`<div class="task-check">${isDone?'✓':''}</div><div class="task-text">${t.text}</div><div class="task-category">${t.cat}</div><div class="task-type ${typeClass(t.type)}">${typeLabel(t.type)}</div><div class="task-del" onclick="removeTask(event,${wi},${ti})">×</div>`;
+      row.addEventListener('click',async(e)=>{
+        if(e.target.classList.contains('task-del'))return;
+        taskDone[id]=!taskDone[id];
+        await saveTasks();
+        renderTimeline();renderProgress();
+      });
+      body.appendChild(row);
+    });
+
+    group.appendChild(hdr);group.appendChild(body);
+    container.appendChild(group);
+  });
+  renderProgress();
+}
+
+function renderProgress(){
+  const total=weeks.reduce((a,w)=>a+w.tasks.length,0);
+  const done=weeks.reduce((a,w,wi)=>a+w.tasks.filter((_,ti)=>taskDone[tid(wi,ti)]).length,0);
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progPct').textContent=`${done}/${total} · ${pct}%`;
+}
+
+async function addTask(wi){
+  const inp=document.getElementById(`nt${wi}`);
+  const cat=document.getElementById(`nc${wi}`).value;
+  const type=document.getElementById(`ny${wi}`).value;
+  const text=inp.value.trim();if(!text)return;
+  weeks[wi].tasks.push({text,cat,type});inp.value='';
+  await saveWeeks();renderTimeline();
+}
+
+async function removeTask(e,wi,ti){
+  e.stopPropagation();if(!confirm('Remover?'))return;
+  weeks[wi].tasks.splice(ti,1);
+  const nd={...taskDone};Object.keys(nd).forEach(k=>{if(k.startsWith(`w${wi}t`))delete nd[k]});
+  taskDone=nd;
+  await saveWeeks();await saveTasks();renderTimeline();
+}
+
+function toggleAddWeek(){document.getElementById('addWeekForm').classList.toggle('open')}
+async function confirmAddWeek(){
+  const label=document.getElementById('newWeekLabel').value.trim();
+  const dates=document.getElementById('newWeekDates').value.trim();
+  const urgency=document.getElementById('newWeekUrgency').value;
+  if(!label||!dates)return;
+  weeks.push({label,dates,urgency,tasks:[]});
+  await saveWeeks();renderTimeline();
+  document.getElementById('addWeekForm').classList.remove('open');
+  document.getElementById('newWeekLabel').value='';
+  document.getElementById('newWeekDates').value='';
+}
+
+// ════════ FINANCEIRO ════════
+const FIN_CATS=['Cerimônia','Recepção','Noiva','Documentação','Assessoria','Outros'];
+const CAT_COLORS={'Cerimônia':{bg:'#EEF2FF',c:'#3730A3'},'Recepção':{bg:'#FDF6EC',c:'#8B6914'},'Noiva':{bg:'#FDF0F5',c:'#9D2058'},'Documentação':{bg:'#F0FDF4',c:'#166534'},'Assessoria':{bg:'#F5F3FF',c:'#6D28D9'},'Outros':{bg:'#F5F5F5',c:'#555'}};
+const DEF_FIN=[
+  {id:1,name:'Buffet',cat:'Recepção',total:0,paid:0},
+  {id:2,name:'DJ',cat:'Recepção',total:0,paid:0},
+  {id:3,name:'Decoração',cat:'Cerimônia',total:0,paid:0},
+  {id:4,name:'Vestido',cat:'Noiva',total:0,paid:0},
+  {id:5,name:'Terno',cat:'Noiva',total:0,paid:0},
+  {id:6,name:'Maquiagem e Cabelo',cat:'Noiva',total:0,paid:0},
+  {id:7,name:'Músico',cat:'Cerimônia',total:0,paid:0},
+  {id:8,name:'Assessoria',cat:'Assessoria',total:0,paid:0},
+  {id:9,name:'Bar',cat:'Recepção',total:0,paid:0},
+  {id:10,name:'Fotógrafo',cat:'Cerimônia',total:0,paid:0},
+  {id:11,name:'Alianças',cat:'Cerimônia',total:0,paid:0},
+  {id:12,name:'Convites',cat:'Outros',total:0,paid:0},
+];
+let finRows=[...DEF_FIN];
+let activeCat='Todos';
+let nextId=DEF_FIN.length+1;
+
+const fmt=v=>'R$ '+(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});
+async function saveFin(){await ss(SK_F,finRows)}
+
+function renderFinTable(){
+  const visible=activeCat==='Todos'?finRows:finRows.filter(r=>r.cat===activeCat);
+  const body=document.getElementById('finBody');body.innerHTML='';
+  visible.forEach(row=>{
+    const saldo=(row.total||0)-(row.paid||0);
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td><input class="fin-name-input" value="${row.name}" onchange="updateFin(${row.id},'name',this.value)"></td>
+      <td><select class="fin-cat-select" onchange="updateFin(${row.id},'cat',this.value)">${[...FIN_CATS,...[...new Set(finRows.map(r=>r.cat))].filter(c=>!FIN_CATS.includes(c))].map(c=>`<option value="${c}"${c===row.cat?' selected':''}>${c}</option>`).join('')}<option value="__new__">+ Nova...</option></select></td>
+      <td><input class="fin-input" type="number" min="0" step="0.01" placeholder="0,00" value="${row.total||''}" onchange="updateFin(${row.id},'total',parseFloat(this.value)||0)"></td>
+      <td><input class="fin-input" type="number" min="0" step="0.01" placeholder="0,00" value="${row.paid||''}" onchange="updateFin(${row.id},'paid',parseFloat(this.value)||0)" style="color:var(--sage)"></td>
+      <td class="${saldo>0?'money-balance':saldo<0?'money-pending':''}">${fmt(saldo)}</td>
+      <td><button class="del-row-btn" onclick="delFinRow(${row.id})">×</button></td>`;
+    body.appendChild(tr);
+  });
+  renderFinSummary();
+  renderCatFilter();
+}
+
+function renderCatFilter(){
+  const cats=['Todos',...new Set(finRows.map(r=>r.cat))];
+  const wrap=document.getElementById('catFilter');wrap.innerHTML='';
+  cats.forEach(c=>{
+    const chip=document.createElement('div');
+    chip.className='cat-chip'+(activeCat===c?' active':'');
+    chip.textContent=c;
+    chip.onclick=()=>{activeCat=c;renderFinTable()};
+    wrap.appendChild(chip);
+  });
+}
+
+function renderFinSummary(){
+  const total=finRows.reduce((a,r)=>a+(r.total||0),0);
+  const paid=finRows.reduce((a,r)=>a+(r.paid||0),0);
+  const pending=total-paid;
+  document.getElementById('finSummary').innerHTML=`
+    <div class="fin-card total"><div class="fin-card-label">Total Previsto</div><div class="fin-card-val">${fmt(total)}</div></div>
+    <div class="fin-card paid"><div class="fin-card-label">Total Pago</div><div class="fin-card-val">${fmt(paid)}</div></div>
+    <div class="fin-card pending"><div class="fin-card-label">Total Pendente</div><div class="fin-card-val">${fmt(pending)}</div></div>`;
+
+  const byCat={};
+  finRows.forEach(r=>{if(!byCat[r.cat])byCat[r.cat]={total:0,paid:0};byCat[r.cat].total+=r.total||0;byCat[r.cat].paid+=r.paid||0});
+  const totalAll=finRows.reduce((a,r)=>a+(r.total||0),0);
+  const paidAll=finRows.reduce((a,r)=>a+(r.paid||0),0);
+
+  document.getElementById('totalsFooter').innerHTML=`
+    <div style="font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(246,242,236,.35);margin-bottom:14px">Resumo por Categoria</div>
+    ${Object.entries(byCat).map(([cat,v])=>`<div class="tf-row"><span class="tf-lbl">${cat}</span><span style="display:flex;gap:18px"><span style="font-size:11px;color:rgba(246,242,236,.4)">pago <span class="tf-val-paid" style="font-size:14px;font-family:'Cormorant Garamond',serif">${fmt(v.paid)}</span></span><span style="font-size:11px;color:rgba(246,242,236,.4)">saldo <span class="tf-val-pending" style="font-size:14px;font-family:'Cormorant Garamond',serif">${fmt(v.total-v.paid)}</span></span></span></div>`).join('')}
+    <div class="tf-row"><span class="tf-lbl" style="font-size:13px;color:var(--gold-light)">TOTAL GERAL</span><div style="text-align:right"><div class="tf-val tf-val-total">${fmt(totalAll)}</div><div style="font-size:11px;margin-top:4px"><span class="tf-val-paid">✓ ${fmt(paidAll)}</span><span style="color:rgba(255,255,255,.25);margin:0 8px">|</span><span class="tf-val-pending">↗ ${fmt(totalAll-paidAll)}</span></div></div></div>`;
+}
+
+async function updateFin(id,field,value){
+  const row=finRows.find(r=>r.id===id);if(!row)return;
+  if(field==='cat'&&value==='__new__'){const n=prompt('Nome da nova categoria:');if(!n){renderFinTable();return}row.cat=n.trim()}else{row[field]=value}
+  await saveFin();renderFinTable();
+}
+async function delFinRow(id){if(!confirm('Remover?'))return;finRows=finRows.filter(r=>r.id!==id);await saveFin();renderFinTable()}
+async function addFinRow(){finRows.push({id:nextId++,name:'Novo item',cat:'Outros',total:0,paid:0});await saveFin();renderFinTable()}
+
+// ════════ CHECKLIST LUA DE MEL ════════
+const CL_DATA=[
+  {icon:'📋',title:'Documentos e Burocracia',items:[
+    'Verificar validade dos passaportes (mín. 6 meses após 14/out/2026)',
+    'Tirar cópias físicas e digitais de todos os documentos',
+    'Brasileiros não precisam de visto para Itália (até 90 dias)',
+    'Salvar documentos em nuvem — acessível sem internet',
+    'Registrar viagem no site do Itamaraty',
+    'Anotar número do consulado brasileiro em Roma e Milão',
+    'Verificar se há exigência de seguro saúde (recomendado)',
+  ]},
+  {icon:'✈️',title:'Voo e Transporte',items:[
+    '✅ Voos TAP confirmados — GRU→FCO 29/set e FCO→GRU 13/out',
+    'Fazer check-in online TAP (abre 24h antes — 28/set às 15h30)',
+    'Confirmar franquia de bagagem com a TAP Portugal',
+    'Comprar trens Trenitalia: Nápoles→Florença (05/out)',
+    'Comprar trens: Florença→Verona (07/out)',
+    'Comprar trens: Verona→Veneza (08/out)',
+    'Comprar trens: Veneza→Roma (10/out)',
+    'Planejar traslado FCO → Nápoles → Sorrento (chegada 30/set)',
+    'Planejar traslado Roma → FCO no dia 13/out (sair cedo)',
+    'Reservar ferries Sorrento → Capri com antecedência',
+    'Baixar app Trenitalia e app Google Maps offline',
+  ]},
+  {icon:'🏨',title:'Hospedagem',items:[
+    'Reservar hotel em Sorrento (30/set→05/out) — prioridade máxima!',
+    'Reservar hotel em Florença (05/out→07/out)',
+    'Reservar hotel em Verona (07/out→08/out)',
+    'Reservar hotel em Veneza histórica — não Mestre! (08/out→10/out)',
+    'Reservar hotel em Roma (10/out→13/out)',
+    'Informar Lua de Mel em todos os hotéis ao reservar',
+    'Salvar confirmações de todas as reservas',
+    'Verificar política de cancelamento de cada hotel',
+    'Anotar endereços e telefones offline',
+    'Solicitar isenção da taxa turística de Veneza (pedir ao hotel)',
+  ]},
+  {icon:'🎟️',title:'Atrações — Reserve com antecedência',items:[
+    'Capri — Gruta Azul: comprar ingresso antecipado (ticketone.it)',
+    'Galeria Uffizi (Florença): reservar em uffizi.it — esgota semanas antes',
+    'Accademia (Florença — Davi de Michelangelo): galleriaaccademiafirenze.it',
+    'Arena di Verona — verificar ópera em 07/out e comprar ingressos',
+    'Coliseu + Fórum Romano + Palatino: colosseo.it — obrigatório',
+    'Museus Vaticanos + Capela Sistina: museivaticani.va — esgota rápido',
+    'Cúpula de São Pedro (Vaticano): verificar horários',
+    'Passeio de barco pela Costa Amalfitana: pesquisar em Sorrento',
+  ]},
+  {icon:'🏥',title:'Seguro Viagem e Saúde',items:[
+    'Contratar seguro viagem com cobertura médica mínima de €30.000',
+    'Verificar se o cartão já inclui seguro viagem',
+    'Imprimir ou salvar apólice do seguro viagem',
+    'Levar medicamentos de uso contínuo + receita médica',
+    'Kit básico: analgésico, antialérgico, antidiarreico, band-aid',
+    'Anotar emergência Itália: 118 (saúde) / 112 (geral)',
+  ]},
+  {icon:'💶',title:'Finanças e Câmbio',items:[
+    'Avisar banco/cartão sobre a viagem',
+    'Levar pelo menos 2 cartões internacionais (Visa + Mastercard)',
+    'Considerar cartão sem IOF (Nomad, Wise, C6 Global)',
+    'Levar euros em espécie (~€200–300 cada)',
+    'Comprar euros no Brasil ou em Lisboa (melhor cotação)',
+    'Definir orçamento diário para refeições e passeios',
+    'Reservar valor para taxa turística (~€150–200 total)',
+    'Checar tarifas de roaming — considerar eSIM europeu',
+  ]},
+  {icon:'📱',title:'Celular e Conectividade',items:[
+    'Contratar eSIM europeu (Airalo, Holafly, TIM Italy)',
+    'Baixar Google Maps com mapas offline de todas as cidades',
+    'Baixar app Trenitalia para bilhetes',
+    'Baixar Google Translate com italiano offline',
+    'Levar adaptador de tomada europeu (Tipo C/F)',
+    'Levar power bank para dias longos de passeio',
+    'Configurar backup automático das fotos (Google Fotos / iCloud)',
+  ]},
+  {icon:'🧳',title:'Mala e Bagagem',items:[
+    'Confirmar franquia TAP e peso máximo',
+    'Mala de rodas com trava TSA',
+    'Levar mochila menor para dias de passeio',
+    'Roupas para clima 18–24°C (outubro italiano)',
+    'Sapatos confortáveis — muitos paralelepípedos em Veneza!',
+    'Jaqueta leve + lenço para entrar em igrejas',
+    'Roupa de praia leve para Sorrento',
+    'Guarda-chuva compacto (chuvas rápidas no norte)',
+    'Protetor solar e óculos de sol',
+    'Roupa especial para jantar romântico',
+  ]},
+  {icon:'💕',title:'Momentos Especiais',items:[
+    'Jogar a moeda juntos na Fontana di Trevi 🪙',
+    'Pôr do sol no Terraço do Infinito em Ravello',
+    'Foto na Varanda de Julieta em Verona 💕',
+    'Passeio de gôndola em Veneza ao entardecer',
+    'Assistir ópera na Arena di Verona (07/out)',
+    'Limoncello gelado ao pôr do sol em Sorrento',
+    'Se perder nas ruelas de Veneza sem mapa ✨',
+    'Levar diário para anotar os momentos da viagem',
+  ]},
+  {icon:'🗓️',title:'Semana do Embarque (22–29/set)',items:[
+    'Fazer check-in online TAP',
+    'Imprimir/baixar todos os vouchers: hotéis, trens, ingressos',
+    'Confirmar reservas de todos os hotéis',
+    'Verificar câmbio e levar euros',
+    'Carregar câmera, power bank e eletrônicos',
+    'Pesar a mala para não ultrapassar franquia',
+    'Avisar familiar do roteiro completo e contatos de emergência',
+    'Chegar ao GRU com 3h de antecedência (voo internacional)',
+  ]},
+];
+
+let clState={};
+
+function renderChecklist(){
+  const c=document.getElementById('cl-container');c.innerHTML='';
+  CL_DATA.forEach((group,gi)=>{
+    const div=document.createElement('div');div.className='cl-group';
+    div.innerHTML=`<div class="cl-group-header"><span class="cl-group-icon">${group.icon}</span><span class="cl-group-title">${group.title}</span><span class="cl-progress" id="clp-${gi}"></span></div>`;
+    const items=document.createElement('div');items.className='cl-items';
+    group.items.forEach((item,ii)=>{
+      const k=`cl_${gi}_${ii}`;
+      const label=document.createElement('label');label.className='cl-item';
+      const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!clState[k];
+      cb.addEventListener('change',async()=>{clState[k]=cb.checked;await ss(SK_CL,clState);updateClProgress()});
+      const chk=document.createElement('span');chk.className='cl-check';chk.textContent='✓';
+      const txt=document.createElement('span');txt.textContent=item;
+      label.appendChild(cb);label.appendChild(chk);label.appendChild(txt);
+      items.appendChild(label);
+    });
+    div.appendChild(items);c.appendChild(div);
+  });
+  updateClProgress();
+}
+
+function updateClProgress(){
+  let total=0,done=0;
+  CL_DATA.forEach((group,gi)=>{
+    let gt=group.items.length,gd=0;
+    group.items.forEach((_,ii)=>{if(clState[`cl_${gi}_${ii}`])gd++});
+    total+=gt;done+=gd;
+    const prog=document.getElementById(`clp-${gi}`);
+    if(prog)prog.textContent=gd+'/'+gt;
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('cl-bar').style.width=pct+'%';
+  document.getElementById('cl-count').textContent=done+' de '+total+' itens concluídos ('+pct+'%)';
+}
+
+// ════════ INIT ════════
+async function init(){
+  // load from shared storage
+  const[w,t,f,cl]=await Promise.all([sg(SK_W),sg(SK_T),sg(SK_F),sg(SK_CL)]);
+  if(w)weeks=w;
+  if(t)taskDone=t;
+  if(f){finRows=f;nextId=finRows.reduce((a,r)=>Math.max(a,r.id),0)+1}
+  if(cl)clState=cl;
+  renderTimeline();
+  renderFinTable();
+  renderChecklist();
+  document.getElementById('progBar').style.display='flex';
+  // poll sync
+  setInterval(async()=>{
+    const[w2,t2,f2,cl2]=await Promise.all([sg(SK_W),sg(SK_T),sg(SK_F),sg(SK_CL)]);
+    let changed=false;
+    if(w2&&JSON.stringify(w2)!==JSON.stringify(weeks)){weeks=w2;changed=true}
+    if(t2&&JSON.stringify(t2)!==JSON.stringify(taskDone)){taskDone=t2;changed=true}
+    if(f2&&JSON.stringify(f2)!==JSON.stringify(finRows)){finRows=f2;nextId=finRows.reduce((a,r)=>Math.max(a,r.id),0)+1;changed=true}
+    if(cl2&&JSON.stringify(cl2)!==JSON.stringify(clState)){clState=cl2;changed=true}
+    if(changed){renderTimeline();renderFinTable();renderChecklist()}
+  },9000);
+}
+init();
+
+
+// ════════════════════════════════════════════════════════
+//  CHATBOT IA FLUTUANTE
+// ════════════════════════════════════════════════════════
+let chatHistory = [];
+let chatOpen = false;
+
+const chatCSS = `<style>
+.cb-fab{position:fixed;bottom:28px;right:28px;z-index:9999;width:58px;height:58px;border-radius:50%;background:var(--ink);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.3);transition:transform .2s,box-shadow .2s;font-size:22px;}
+.cb-fab:hover{transform:scale(1.08);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.cb-fab-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--gold);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.cb-fab-badge.show{opacity:1}
+.cb-panel{position:fixed;bottom:100px;right:28px;z-index:9998;width:380px;max-width:calc(100vw - 40px);background:white;border-radius:16px;box-shadow:0 16px 56px rgba(0,0,0,.22);display:flex;flex-direction:column;overflow:hidden;transform:scale(.9) translateY(20px);opacity:0;transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;pointer-events:none;max-height:520px;}
+.cb-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.cb-header{background:var(--ink);padding:14px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.cb-header-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:cbpulse 2s infinite;}
+@keyframes cbpulse{0%,100%{opacity:1}50%{opacity:.4}}
+.cb-header-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;color:var(--cream);flex:1;}
+.cb-header-sub{font-size:9px;letter-spacing:.1em;color:rgba(246,242,236,.4);}
+.cb-close{color:rgba(246,242,236,.4);cursor:pointer;font-size:18px;background:none;border:none;padding:0 4px;line-height:1;transition:color .15s;}
+.cb-close:hover{color:var(--cream)}
+.cb-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;}
+.cb-msg{display:flex;gap:8px;align-items:flex-end;}
+.cb-msg.user{flex-direction:row-reverse}
+.cb-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;background:var(--warm);}
+.cb-msg.user .cb-avatar{background:var(--gold)}
+.cb-bubble{max-width:84%;padding:9px 13px;border-radius:12px;font-size:12.5px;line-height:1.55;}
+.cb-msg.bot .cb-bubble{background:var(--warm);color:var(--ink);border-bottom-left-radius:3px;}
+.cb-msg.user .cb-bubble{background:var(--ink);color:var(--cream);border-bottom-right-radius:3px;}
+.cb-action-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:10px;background:var(--sage-pale);color:var(--sage);font-weight:500;}
+.cb-typing{display:flex;gap:4px;align-items:center;padding:4px 2px;}
+.cb-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:cbtyping .9s infinite;}
+.cb-typing span:nth-child(2){animation-delay:.15s}
+.cb-typing span:nth-child(3){animation-delay:.3s}
+@keyframes cbtyping{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+.cb-suggestions{padding:10px 12px;display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0;border-top:1px solid var(--border);}
+.cb-sug{font-size:10.5px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:white;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.cb-sug:hover{background:var(--gold-pale);border-color:var(--gold);color:var(--gold)}
+.cb-input-row{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--border);flex-shrink:0;}
+.cb-input{flex:1;border:1px solid var(--border);border-radius:20px;padding:8px 14px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);outline:none;background:var(--cream);transition:border-color .15s;}
+.cb-input:focus{border-color:var(--gold)}
+.cb-send{width:36px;height:36px;border-radius:50%;background:var(--gold);color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:background .15s,transform .15s;}
+.cb-send:hover{background:#8A6A2E;transform:scale(1.08)}
+.cb-send:disabled{background:var(--border);cursor:not-allowed;transform:none}
+</style>`;
+
+document.body.insertAdjacentHTML('beforeend', chatCSS + `
+<div class="cb-fab" id="cbFab" onclick="toggleChat()" style="position:fixed">
+  💬
+  <div class="cb-fab-badge" id="cbBadge">1</div>
+</div>
+<div class="cb-panel" id="cbPanel">
+  <div class="cb-header">
+    <div class="cb-header-dot"></div>
+    <div style="flex:1">
+      <div class="cb-header-title">Assistente do Casamento ✨</div>
+      <div class="cb-header-sub">IA integrada · atualiza a página automaticamente</div>
+    </div>
+    <button class="cb-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="cb-messages" id="cbMessages"></div>
+  <div class="cb-suggestions" id="cbSugs">
+    <div class="cb-sug" onclick="cbSuggest(this)">Adicionar tarefa na Semana 1</div>
+    <div class="cb-sug" onclick="cbSuggest(this)">Atualizar valor do buffet</div>
+    <div class="cb-sug" onclick="cbSuggest(this)">Marcar item no checklist</div>
+    <div class="cb-sug" onclick="cbSuggest(this)">Ver resumo financeiro</div>
+  </div>
+  <div class="cb-input-row">
+    <input class="cb-input" id="cbInput" placeholder="Ex: DJ total R$5000 pago R$2000" onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="cb-send" id="cbSend" onclick="sendChat()">➤</button>
+  </div>
+</div>`);
+
+setTimeout(()=>{
+  addBotMsg('Olá! 👋 Sou a assistente do seu casamento.\n\nPosso ajudar com:\n• 📋 **Cronograma** — adicionar/remover tarefas\n• 💰 **Financeiro** — incluir fornecedores e valores\n• ✅ **Checklist** — marcar itens da lua de mel\n\nDigite o que precisar em linguagem natural!');
+  document.getElementById('cbBadge').classList.add('show');
+},1800);
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('cbPanel').classList.toggle('open',chatOpen);
+  document.getElementById('cbBadge').classList.remove('show');
+  if(chatOpen) setTimeout(()=>document.getElementById('cbInput').focus(),300);
+}
+function cbSuggest(el){document.getElementById('cbInput').value=el.textContent;document.getElementById('cbInput').focus();}
+
+function addBotMsg(text,tags=[]){
+  const msgs=document.getElementById('cbMessages');
+  const div=document.createElement('div');div.className='cb-msg bot';
+  const formatted=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  const tagsHtml=tags.map(t=>`<span class="cb-action-tag">✓ ${t}</span>`).join(' ');
+  div.innerHTML=`<div class="cb-avatar">✨</div><div class="cb-bubble">${formatted}${tagsHtml?'<br><br>'+tagsHtml:''}</div>`;
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+}
+function addUserMsg(text){
+  const msgs=document.getElementById('cbMessages');
+  const div=document.createElement('div');div.className='cb-msg user';
+  div.innerHTML=`<div class="cb-avatar">👤</div><div class="cb-bubble">${text}</div>`;
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+}
+function showTyping(){
+  const msgs=document.getElementById('cbMessages');
+  const div=document.createElement('div');div.className='cb-msg bot';div.id='cbTyping';
+  div.innerHTML=`<div class="cb-avatar">✨</div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+}
+function hideTyping(){const t=document.getElementById('cbTyping');if(t)t.remove();}
+
+function getStateSnapshot(){
+  const wSnap=weeks.map((w,wi)=>({label:w.label,dates:w.dates,tasks:w.tasks.map((t,ti)=>({text:t.text,cat:t.cat,type:t.type,done:!!taskDone[tid(wi,ti)]}))}));
+  const fSnap=finRows.map(r=>({name:r.name,cat:r.cat,total:r.total||0,paid:r.paid||0,saldo:(r.total||0)-(r.paid||0)}));
+  const clSnap=CL_DATA.map((g,gi)=>({group:g.title,items:g.items.map((item,ii)=>({text:item,done:!!clState[`cl_${gi}_${ii}`]}))}));
+  return {cronograma:wSnap,financeiro:fSnap,checklist:clSnap};
+}
+
+async function executeActions(actions){
+  const done=[];
+  for(const a of actions){
+    try{
+      if(a.type==='add_task'){
+        const wi=weeks.findIndex(w=>w.label.toLowerCase().includes((a.week||'').toLowerCase())||w.dates.toLowerCase().includes((a.week||'').toLowerCase()));
+        if(wi>=0){weeks[wi].tasks.push({text:a.text,cat:a.cat||'Geral',type:a.taskType||'do'});await saveWeeks();renderTimeline();done.push(`Tarefa adicionada em "${weeks[wi].label}"`);}
+        else done.push(`Semana "${a.week}" não encontrada`);
+      }
+      else if(a.type==='remove_task'){
+        let found=false;
+        for(let wi=0;wi<weeks.length;wi++){const ti=weeks[wi].tasks.findIndex(t=>t.text.toLowerCase().includes(a.text.toLowerCase()));if(ti>=0){weeks[wi].tasks.splice(ti,1);await saveWeeks();renderTimeline();done.push('Tarefa removida');found=true;break;}}
+        if(!found)done.push(`Tarefa "${a.text}" não encontrada`);
+      }
+      else if(a.type==='toggle_task'){
+        let found=false;
+        for(let wi=0;wi<weeks.length;wi++){const ti=weeks[wi].tasks.findIndex(t=>t.text.toLowerCase().includes(a.text.toLowerCase()));if(ti>=0){const id=tid(wi,ti);taskDone[id]=!taskDone[id];await saveTasks();renderTimeline();done.push(`Tarefa ${taskDone[id]?'concluída':'reaberta'}: "${weeks[wi].tasks[ti].text.substring(0,35)}..."`);found=true;break;}}
+        if(!found)done.push(`Tarefa "${a.text}" não encontrada`);
+      }
+      else if(a.type==='add_week'){
+        weeks.push({label:a.label,dates:a.dates||'',urgency:a.urgency||'normal',tasks:[]});
+        await saveWeeks();renderTimeline();done.push(`Bloco "${a.label}" adicionado`);
+      }
+      else if(a.type==='add_fin_row'){
+        const existing=finRows.find(r=>r.name.toLowerCase()===(a.name||'').toLowerCase());
+        if(existing){if(a.total!==undefined)existing.total=a.total;if(a.paid!==undefined)existing.paid=a.paid;done.push(`Atualizado: ${existing.name}`);}
+        else{finRows.push({id:nextId++,name:a.name||'Novo',cat:a.cat||'Outros',total:a.total||0,paid:a.paid||0});done.push(`Adicionado: ${a.name}`);}
+        await saveFin();renderFinTable();
+      }
+      else if(a.type==='update_fin_row'){
+        const row=finRows.find(r=>r.name.toLowerCase().includes((a.name||'').toLowerCase()));
+        if(row){if(a.total!==undefined)row.total=a.total;if(a.paid!==undefined)row.paid=a.paid;if(a.cat)row.cat=a.cat;await saveFin();renderFinTable();done.push(`Atualizado: ${row.name}`);}
+        else done.push(`Fornecedor "${a.name}" não encontrado`);
+      }
+      else if(a.type==='toggle_checklist'){
+        let found=false;
+        for(let gi=0;gi<CL_DATA.length;gi++){
+          for(let ii=0;ii<CL_DATA[gi].items.length;ii++){
+            if(CL_DATA[gi].items[ii].toLowerCase().includes(a.text.toLowerCase())){
+              const k=`cl_${gi}_${ii}`;clState[k]=!clState[k];await ss(SK_CL,clState);renderChecklist();
+              done.push(`Checklist ${clState[k]?'marcado':'desmarcado'}: "${CL_DATA[gi].items[ii].substring(0,40)}"`);
+              found=true;break;
+            }
+          }
+          if(found)break;
+        }
+        if(!found)done.push(`Item "${a.text}" não encontrado no checklist`);
+      }
+      else if(a.type==='navigate'){
+        const tab=(a.tab||'').toLowerCase();
+        const tabMap={'cronograma':'cronograma','financeiro':'financeiro','lua de mel':'luademel','checklist':'checklist'};
+        const tabId=tabMap[tab]||tab;
+        const btn=[...document.querySelectorAll('.nav-tab')].find(b=>b.textContent.toLowerCase().includes(tab));
+        if(btn){goTab(tabId,btn);done.push(`Navegou para ${a.tab}`);}
+      }
+    }catch(err){done.push(`Erro: ${err.message}`);}
+  }
+  return done;
+}
+
+async function sendChat(){
+  const input=document.getElementById('cbInput');
+  const msg=input.value.trim();if(!msg)return;
+  input.value='';
+  document.getElementById('cbSend').disabled=true;
+  addUserMsg(msg);
+  chatHistory.push({role:'user',content:msg});
+  showTyping();
+  const snapshot=getStateSnapshot();
+  const systemPrompt=`Você é a assistente de IA integrada de uma página de planejamento de casamento e lua de mel de Mika & Diego (casamento 26/09/2026, lua de mel Itália 29/set-14/out/2026).
+
+ESTADO ATUAL:
+${JSON.stringify(snapshot,null,2)}
+
+Semanas disponíveis: ${weeks.map(w=>w.label).join(', ')}
+Fornecedores: ${finRows.map(r=>r.name).join(', ')}
+
+Quando o usuário pedir para EXECUTAR alguma ação, responda APENAS com JSON:
+{"reply":"mensagem amigável","actions":[...]}
+
+Tipos de ação disponíveis:
+- {"type":"add_task","week":"Semana X","text":"texto","cat":"Categoria","taskType":"do|pay|confirm"}
+- {"type":"remove_task","text":"parte do texto"}
+- {"type":"toggle_task","text":"parte do texto"}
+- {"type":"add_week","label":"label","dates":"datas","urgency":"normal|urgent|ok"}
+- {"type":"add_fin_row","name":"nome","cat":"Categoria","total":0,"paid":0}
+- {"type":"update_fin_row","name":"nome","total":0,"paid":0}
+- {"type":"toggle_checklist","text":"parte do texto do item"}
+- {"type":"navigate","tab":"cronograma|financeiro|lua de mel|checklist"}
+
+Quando for só conversa/pergunta, responda em texto normal sem JSON.
+Idioma: sempre português brasileiro. Seja concisa e use emojis com moderação.`;
+
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:systemPrompt,messages:chatHistory})
+    });
+    const data=await res.json();
+    hideTyping();
+    const raw=data.content?.[0]?.text||'Desculpe, não consegui processar.';
+    chatHistory.push({role:'assistant',content:raw});
+    let parsed=null;
+    const jsonMatch=raw.match(/\{[\s\S]*\}/);
+    if(jsonMatch){try{parsed=JSON.parse(jsonMatch[0]);}catch(e){}}
+    if(parsed&&parsed.actions){
+      const doneList=await executeActions(parsed.actions);
+      addBotMsg(parsed.reply||'Feito!',doneList);
+    }else{
+      addBotMsg(raw);
+    }
+  }catch(err){
+    hideTyping();
+    addBotMsg(`Erro de conexão: ${err.message}`);
+  }
+  document.getElementById('cbSend').disabled=false;
+}
+
+</script>
+</body>
+</html>
