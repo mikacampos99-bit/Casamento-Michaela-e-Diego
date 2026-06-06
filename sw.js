@@ -1,24 +1,12 @@
 // Service Worker — Mika & Diego · Casamento 2026
-const CACHE_NAME = 'casamento-2026-v1';
-const ASSETS = [
-  '/index.html',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
-  'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap'
-];
+const CACHE_NAME = 'casamento-2026-v2';
 
-// INSTALL — cacheia os assets principais
+// INSTALL
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(ASSETS).catch(() => {});
-    })
-  );
   self.skipWaiting();
 });
 
-// ACTIVATE — remove caches antigos
+// ACTIVATE
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -28,21 +16,26 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// FETCH — network first, fallback para cache
+// FETCH — só cacheia arquivos do próprio domínio
 self.addEventListener('fetch', event => {
-  // API do Claude — sempre online, nunca cacheia
-  if (event.request.url.includes('api.anthropic.com')) return;
+  const url = new URL(event.request.url);
+  
+  // Ignora tudo que não é do mesmo domínio (Firebase, APIs, Google Fonts etc)
+  if (url.origin !== self.location.origin) return;
+  
+  // Só cacheia GET
+  if (event.request.method !== 'GET') return;
 
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // cacheia resposta válida
-        if (response && response.status === 200) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        }
-        return response;
-      })
-      .catch(() => caches.match(event.request))
+    caches.open(CACHE_NAME).then(cache =>
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200) {
+            cache.put(event.request, response.clone());
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    )
   );
 });
