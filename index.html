@@ -191,7 +191,7 @@ body{
 
 .task-row{
   display:grid;grid-template-columns:22px 1fr auto auto auto;
-  align-items:center;gap:10px;padding:11px 16px;
+  align-items:center;gap:10px;padding:10px 16px;
   border-bottom:1px solid var(--border);cursor:pointer;
   transition:background .12s;font-size:13px;
 }
@@ -204,8 +204,28 @@ body{
   font-size:11px;transition:all .15s;
 }
 .task-row.done-row .task-check{background:var(--sage);border-color:var(--sage);color:white}
+.task-main{display:flex;flex-direction:column;gap:3px;min-width:0}
 .task-text{line-height:1.4}
 .task-row.done-row .task-text{text-decoration:line-through;color:var(--muted)}
+.task-resp{
+  display:flex;align-items:center;gap:5px;
+  font-size:10px;color:var(--muted);
+}
+.task-resp select{
+  font-family:'DM Sans',sans-serif;font-size:10px;
+  border:none;background:transparent;color:var(--muted);
+  cursor:pointer;outline:none;padding:0;
+  max-width:120px;
+}
+.task-resp select:focus{color:var(--gold)}
+.resp-badge{
+  font-size:9px;padding:1px 7px;border-radius:10px;
+  font-weight:500;white-space:nowrap;
+}
+.resp-mika{background:#FDF0F5;color:#9D2058}
+.resp-diego{background:#EEF2FF;color:#3730A3}
+.resp-ambos{background:var(--gold-pale);color:#7A5020}
+.resp-none{background:var(--warm);color:var(--muted)}
 .task-category{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .task-type{font-size:10px;padding:2px 8px;border-radius:12px;white-space:nowrap}
 .type-pay{background:#FDECEA;color:var(--danger)}
@@ -213,6 +233,20 @@ body{
 .type-confirm{background:#EEF2FF;color:#3730A3}
 .task-del{font-size:14px;color:var(--border);cursor:pointer;padding:2px 4px;line-height:1}
 .task-del:hover{color:var(--danger);background:#FDECEA;border-radius:3px}
+
+/* ─── GRÁFICO PIZZA ─── */
+.fin-chart-wrap{
+  display:flex;align-items:center;gap:28px;
+  background:white;border:1px solid var(--border);border-radius:12px;
+  padding:20px 24px;margin-bottom:20px;flex-wrap:wrap;
+}
+.fin-chart-canvas{flex-shrink:0}
+.fin-chart-legend{display:flex;flex-direction:column;gap:10px;flex:1;min-width:140px}
+.legend-item{display:flex;align-items:center;gap:10px;font-size:12px;}
+.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.legend-label{color:var(--muted);flex:1}
+.legend-val{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink)}
+.legend-pct{font-size:10px;color:var(--muted)}
 
 .add-week-wrap{margin-top:14px}
 .btn-add-week{
@@ -459,22 +493,112 @@ body{
   .hotel-grid{grid-template-columns:1fr}
   .task-row{grid-template-columns:22px 1fr auto}
   .task-category,.task-del{display:none}
+  .fin-chart-wrap{flex-direction:column;align-items:center}
   .dest-head{flex-direction:column;gap:8px}
 }
+
+/* ─── CONVIDADOS ─── */
+.guest-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:20px}
+.guest-card{padding:14px 16px;border-radius:10px;border:1px solid var(--border);background:white;text-align:center}
+.guest-card-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1}
+.guest-card-lbl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.guest-card.total .guest-card-num{color:var(--ink)}
+.guest-card.conf .guest-card-num{color:var(--sage)}
+.guest-card.ess .guest-card-num{color:var(--gold)}
+.guest-card.adult .guest-card-num{color:var(--rose)}
+.guest-card.child .guest-card-num{color:#3730A3}
+
+.guest-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.guest-search{
+  flex:1;min-width:160px;
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 14px;font-family:'DM Sans',sans-serif;font-size:13px;
+  color:var(--ink);outline:none;background:var(--cream);
+}
+.guest-search:focus{border-color:var(--gold)}
+.gf-chip{
+  font-size:10px;padding:4px 12px;border-radius:20px;
+  border:1px solid var(--border);background:white;
+  color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.gf-chip.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+.guest-table-wrap{overflow-x:auto;margin-bottom:12px}
+.guest-table{width:100%;border-collapse:collapse;font-size:13px}
+.guest-table th{
+  text-align:left;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);padding:8px 12px;border-bottom:2px solid var(--border);
+  background:var(--warm);white-space:nowrap;
+}
+.guest-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.guest-table tr:hover td{background:#FAFAF7}
+.guest-table tr:last-child td{border-bottom:none}
+
+.cat-badge{
+  font-size:9px;padding:2px 8px;border-radius:10px;font-weight:500;white-space:nowrap;
+}
+.cat-adulto{background:#FDF0F5;color:#9D2058}
+.cat-crianca{background:#EEF2FF;color:#3730A3}
+.cat-bebe{background:#F0FDF4;color:#166534}
+
+.grupo-badge{
+  font-size:9px;padding:2px 8px;border-radius:10px;font-weight:500;white-space:nowrap;
+}
+.grupo-familia{background:var(--gold-pale);color:#7A5020}
+.grupo-amigos{background:#F5F3FF;color:#6D28D9}
+.grupo-trabalho{background:#F5F5F5;color:#555}
+
+.lista-badge{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:500}
+.lista-noivo{background:#EEF2FF;color:#3730A3}
+.lista-noiva{background:#FDF0F5;color:#9D2058}
+
+.g-toggle{
+  width:22px;height:22px;border-radius:5px;border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:12px;transition:all .15s;background:white;flex-shrink:0;
+}
+.g-toggle.on-conf{background:var(--sage);border-color:var(--sage);color:white}
+.g-toggle.on-ess{background:var(--gold);border-color:var(--gold);color:white}
+
+.guest-name-input{
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  border:none;background:transparent;color:var(--ink);
+  outline:none;width:100%;min-width:100px;
+}
+.guest-name-input:focus{border-bottom:1px solid var(--gold)}
+.g-select{
+  font-family:'DM Sans',sans-serif;font-size:11px;
+  border:1px solid var(--border);border-radius:8px;padding:3px 6px;
+  background:white;color:var(--ink);outline:none;cursor:pointer;
+}
+.g-select:focus{border-color:var(--gold)}
+.g-del{font-size:14px;color:var(--border);cursor:pointer;padding:2px 4px;line-height:1}
+.g-del:hover{color:var(--danger)}
+
+.btn-add-guest{
+  display:flex;align-items:center;gap:8px;
+  background:var(--warm);border:1px dashed var(--border);border-radius:8px;
+  padding:10px 18px;font-size:12px;color:var(--muted);cursor:pointer;
+  width:100%;margin-top:10px;transition:background .18s,color .18s;
+}
+.btn-add-guest:hover{background:#E6DDD0;color:var(--gold)}
+
+.guest-prog-bar{
+  background:var(--warm);border:1px solid var(--border);border-radius:10px;
+  padding:16px 20px;margin-bottom:20px;
+}
+.guest-prog-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.guest-prog-row:last-child{margin-bottom:0}
+.gpr-lbl{font-size:11px;color:var(--muted);min-width:80px}
+.gpr-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.gpr-fill{height:100%;border-radius:3px;transition:width .4s ease}
+.gpr-fill.conf{background:var(--sage)}
+.gpr-fill.ess{background:var(--gold)}
+.gpr-num{font-size:11px;font-weight:500;color:var(--ink);min-width:30px;text-align:right}
+
 </style>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/Casamento-Michaela-e-Diego/sw.js')
-          .then(r => console.log('SW registrado:', r.scope))
-          .catch(e => console.log('SW erro:', e));
-      });
-    }
-  </script>
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
 </head>
 <body>
 
@@ -499,6 +623,7 @@ body{
   <button class="nav-tab" onclick="goTab('financeiro',this)">💰 Financeiro</button>
   <button class="nav-tab" onclick="goTab('luademel',this)">🇮🇹 Lua de Mel</button>
   <button class="nav-tab" onclick="goTab('checklist',this)">✅ Checklist</button>
+  <button class="nav-tab" onclick="goTab('convidados',this)">👥 Convidados</button>
 </nav>
 
 <!-- PROGRESS (cronograma) -->
@@ -545,6 +670,10 @@ body{
     <p class="sec-eyebrow">Controle de custos</p>
     <h2 class="sec-title">Financeiro do Casamento</h2>
     <div class="fin-summary" id="finSummary"></div>
+    <div class="fin-chart-wrap" id="finChartWrap">
+      <canvas class="fin-chart-canvas" id="finPieChart" width="160" height="160"></canvas>
+      <div class="fin-chart-legend" id="finChartLegend"></div>
+    </div>
     <div class="cat-filter-wrap" id="catFilter"></div>
     <div class="fin-table-wrap">
       <table class="fin-table">
@@ -812,6 +941,55 @@ body{
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════
+     TAB 5: CONVIDADOS
+═══════════════════════════════════════ -->
+<div class="page-panel" id="tab-convidados">
+  <div class="panel-main">
+    <p class="sec-eyebrow">Lista completa</p>
+    <h2 class="sec-title">Convidados 👥</h2>
+
+    <!-- Resumo -->
+    <div class="guest-summary" id="guestSummary"></div>
+
+    <!-- Barra de progresso confirmação -->
+    <div class="guest-prog-bar" id="guestProgBar"></div>
+
+    <!-- Filtros -->
+    <div class="guest-filters">
+      <input class="guest-search" id="guestSearch" placeholder="🔍 Buscar por nome..." oninput="renderGuests()">
+      <select class="g-select" id="gfCategoria" onchange="renderGuests()">
+        <option value="">Categoria</option>
+        <option>Adulto</option><option>Criança</option><option>Bebê</option>
+      </select>
+
+      <select class="g-select" id="gfStatus" onchange="renderGuests()">
+        <option value="">Status</option>
+        <option value="confirmado">✅ Confirmados</option>
+        <option value="essencial">⭐ Essenciais</option>
+        <option value="pendente">⏳ Pendentes</option>
+      </select>
+    </div>
+
+    <!-- Tabela -->
+    <div class="guest-table-wrap">
+      <table class="guest-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th title="Confirmado">✅</th>
+            <th title="Essencial">⭐</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="guestBody"></tbody>
+      </table>
+    </div>
+    <button class="btn-add-guest" onclick="addGuest()">＋ Adicionar convidado</button>
+  </div>
+</div>
+
 <footer style="background:var(--ink);color:rgba(246,242,236,.4);text-align:center;padding:32px;font-size:11px;line-height:2;border-top:1px solid rgba(255,255,255,.06)">
   <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);margin-bottom:8px">Mika & Diego · 2026</p>
   <p>Casamento 26/09 · Lua de Mel Itália 29/set–14/out</p>
@@ -839,58 +1017,23 @@ function goTab(id,btn){
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
   document.getElementById('progBar').style.display=(id==='cronograma')?'flex':'none';
+  if(id==='convidados') renderGuests();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ════════ FIREBASE STORAGE ════════
-const firebaseConfig = {
-  apiKey: "AIzaSyB_eYvEN7Nd8YAAvlAW52OTiyzfVh-0hSI",
-  authDomain: "casamento-nhamos.firebaseapp.com",
-  databaseURL: "https://casamento-nhamos-default-rtdb.firebaseio.com",
-  projectId: "casamento-nhamos",
-  storageBucket: "casamento-nhamos.firebasestorage.app",
-  messagingSenderId: "1038643250971",
-  appId: "1:1038643250971:web:2d5567497bebab2a3375be"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+// ════════ STORAGE (localStorage + sync visual) ════════
+const SK_W='wed_weeks_v5', SK_T='wed_tasks_v5', SK_F='wed_fin_v5', SK_CL='wed_cl_v5';
 
-const SK_W='weeks', SK_T='tasks', SK_F='fin', SK_CL='checklist';
-
-// Escreve no Firebase
-async function ss(k, v) {
-  try { await db.ref('casamento/' + k).set(v); } catch(e) { console.warn('Firebase write error:', e); }
+function ss(k, v) {
+  try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) { console.warn('storage write:', e); }
+}
+function sg(k) {
+  try { const r = localStorage.getItem(k); return r ? JSON.parse(r) : null; } catch(e) { return null; }
 }
 
-// Lê do Firebase
-async function sg(k) {
-  try {
-    const snap = await db.ref('casamento/' + k).get();
-    return snap.exists() ? snap.val() : null;
-  } catch(e) { console.warn('Firebase read error:', e); return null; }
-}
-
-// Listener em tempo real — atualiza a página quando outro usuário mudar algo
-let _lastData = {};
 function startRealtimeSync() {
-  db.ref('casamento').on('value', snap => {
-    if (!snap.exists()) return;
-    const data = snap.val();
-    const hash = JSON.stringify(data);
-    if (hash === JSON.stringify(_lastData)) return; // sem mudança
-    _lastData = data;
-    let changed = false;
-    if (data.weeks && JSON.stringify(data.weeks) !== JSON.stringify(weeks)) { weeks = data.weeks; changed = true; }
-    if (data.tasks && JSON.stringify(data.tasks) !== JSON.stringify(taskDone)) { taskDone = data.tasks; changed = true; }
-    if (data.fin && JSON.stringify(data.fin) !== JSON.stringify(finRows)) {
-      finRows = data.fin; nextId = finRows.reduce((a,r)=>Math.max(a,r.id||0),0)+1; changed = true;
-    }
-    if (data.checklist && JSON.stringify(data.checklist) !== JSON.stringify(clState)) { clState = data.checklist; changed = true; }
-    if (changed) {
-      renderTimeline(); renderFinTable(); renderChecklist();
-      showSyncToast();
-    }
-  });
+  // Sem Firebase — sync via localStorage
+  // Mostra dica de sincronização manual
 }
 
 function showSyncToast() {
@@ -909,7 +1052,7 @@ function showSyncToast() {
 // ════════ CRONOGRAMA ════════
 const DEF_WEEKS=[
   {label:'Semana 1',dates:'09–15 Jun',urgency:'urgent',tasks:[
-    {text:'Confirmar lista final de convidados com assessoria',cat:'Convidados',type:'do'},
+    {text:'Confirmar lista final de convidados com assessoria',cat:'Convidados',type:'do',resp:''},
     {text:'Definir texto e arte do convite (físico ou digital)',cat:'Convites',type:'do'},
     {text:'Pagar parcela — Maquiagem e Cabelo',cat:'Financeiro',type:'pay'},
     {text:'Pesquisar modelos de aliança (3 opções shortlist)',cat:'Alianças',type:'do'},
@@ -974,14 +1117,8 @@ function typeLabel(t){return t==='pay'?'Pagar':t==='confirm'?'Confirmar':'Fazer'
 function badgeClass(u){return u==='urgent'?'badge-urgent':u==='ok'?'badge-ok':'badge-normal'}
 function badgeLabel(u){return u==='urgent'?'Urgente':u==='ok'?'🎉':'Próximo'}
 
-async function saveWeeks(){
-  await ss(SK_W,weeks);
-  _lastData = {..._lastData, weeks: JSON.parse(JSON.stringify(weeks))};
-}
-async function saveTasks(){
-  await ss(SK_T,taskDone);
-  _lastData = {..._lastData, tasks: JSON.parse(JSON.stringify(taskDone))};
-}
+function saveWeeks(){ ss(SK_W,weeks); }
+function saveTasks(){ ss(SK_T,taskDone); }
 
 function renderTimeline(){
   const container=document.getElementById('timeline');
@@ -1012,11 +1149,31 @@ function renderTimeline(){
       const isDone=!!taskDone[id];
       const row=document.createElement('div');
       row.className=`task-row${isDone?' done-row':''}`;
-      row.innerHTML=`<div class="task-check">${isDone?'✓':''}</div><div class="task-text">${t.text}</div><div class="task-category">${t.cat}</div><div class="task-type ${typeClass(t.type)}">${typeLabel(t.type)}</div><div class="task-del" onclick="removeTask(event,${wi},${ti})">×</div>`;
+      const resp = t.resp||'';
+      const respLabel = resp==='Mika'?'👩 Mika':resp==='Diego'?'👨 Diego':resp==='Ambos'?'👫 Ambos':'';
+      const respClass = resp==='Mika'?'resp-mika':resp==='Diego'?'resp-diego':resp==='Ambos'?'resp-ambos':'resp-none';
+      row.innerHTML=`
+        <div class="task-check">${isDone?'✓':''}</div>
+        <div class="task-main">
+          <div class="task-text">${t.text}</div>
+          <div class="task-resp">
+            <span style="font-size:9px;letter-spacing:.1em;text-transform:uppercase">responsável:</span>
+            <select onclick="event.stopPropagation()" onchange="setResp(event,${wi},${ti},this.value)">
+              <option value="" ${resp===''?'selected':''}>— ninguém —</option>
+              <option value="Mika" ${resp==='Mika'?'selected':''}>👩 Mika</option>
+              <option value="Diego" ${resp==='Diego'?'selected':''}>👨 Diego</option>
+              <option value="Ambos" ${resp==='Ambos'?'selected':''}>👫 Ambos</option>
+            </select>
+            ${respLabel?`<span class="resp-badge ${respClass}">${respLabel}</span>`:''}
+          </div>
+        </div>
+        <div class="task-category">${t.cat}</div>
+        <div class="task-type ${typeClass(t.type)}">${typeLabel(t.type)}</div>
+        <div class="task-del" onclick="removeTask(event,${wi},${ti})">×</div>`;
       row.addEventListener('click',async(e)=>{
-        if(e.target.classList.contains('task-del'))return;
+        if(e.target.classList.contains('task-del')||e.target.tagName==='SELECT')return;
         taskDone[id]=!taskDone[id];
-        await saveTasks();
+        saveTasks();
         renderTimeline();renderProgress();
       });
       body.appendChild(row);
@@ -1036,31 +1193,39 @@ function renderProgress(){
   document.getElementById('progPct').textContent=`${done}/${total} · ${pct}%`;
 }
 
-async function addTask(wi){
+function addTask(wi){
   const inp=document.getElementById(`nt${wi}`);
   const cat=document.getElementById(`nc${wi}`).value;
   const type=document.getElementById(`ny${wi}`).value;
   const text=inp.value.trim();if(!text)return;
-  weeks[wi].tasks.push({text,cat,type});inp.value='';
-  await saveWeeks();renderTimeline();
+  weeks[wi].tasks.push({text,cat,type,resp:''});inp.value='';
+  saveWeeks();renderTimeline();
 }
 
-async function removeTask(e,wi,ti){
+function setResp(e,wi,ti,val){
+  e.stopPropagation();
+  if(!weeks[wi].tasks[ti])return;
+  weeks[wi].tasks[ti].resp=val;
+  saveWeeks();
+  renderTimeline();
+}
+
+function removeTask(e,wi,ti){
   e.stopPropagation();if(!confirm('Remover?'))return;
   weeks[wi].tasks.splice(ti,1);
   const nd={...taskDone};Object.keys(nd).forEach(k=>{if(k.startsWith(`w${wi}t`))delete nd[k]});
   taskDone=nd;
-  await saveWeeks();await saveTasks();renderTimeline();
+  saveWeeks();saveTasks();renderTimeline();
 }
 
 function toggleAddWeek(){document.getElementById('addWeekForm').classList.toggle('open')}
-async function confirmAddWeek(){
+function confirmAddWeek(){
   const label=document.getElementById('newWeekLabel').value.trim();
   const dates=document.getElementById('newWeekDates').value.trim();
   const urgency=document.getElementById('newWeekUrgency').value;
   if(!label||!dates)return;
   weeks.push({label,dates,urgency,tasks:[]});
-  await saveWeeks();renderTimeline();
+  saveWeeks();renderTimeline();
   document.getElementById('addWeekForm').classList.remove('open');
   document.getElementById('newWeekLabel').value='';
   document.getElementById('newWeekDates').value='';
@@ -1088,10 +1253,7 @@ let activeCat='Todos';
 let nextId=DEF_FIN.length+1;
 
 const fmt=v=>'R$ '+(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});
-async function saveFin(){
-  await ss(SK_F,finRows);
-  _lastData = {..._lastData, fin: JSON.parse(JSON.stringify(finRows))};
-}
+function saveFin(){ ss(SK_F,finRows); }
 
 function renderFinTable(){
   const visible=activeCat==='Todos'?finRows:finRows.filter(r=>r.cat===activeCat);
@@ -1109,6 +1271,67 @@ function renderFinTable(){
   });
   renderFinSummary();
   renderCatFilter();
+}
+
+function drawPieChart(paid, pending, total){
+  const canvas = document.getElementById('finPieChart');
+  const legend = document.getElementById('finChartLegend');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx=80, cy=80, r=70;
+  ctx.clearRect(0,0,160,160);
+
+  if(total<=0){
+    // placeholder vazio
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+    ctx.fillStyle='#F0EBE3';ctx.fill();
+    ctx.beginPath();ctx.arc(cx,cy,44,0,Math.PI*2);
+    ctx.fillStyle='white';ctx.fill();
+    legend.innerHTML=`<div class="legend-item"><div class="legend-dot" style="background:#F0EBE3"></div><div class="legend-label">Preencha os valores</div></div>`;
+    return;
+  }
+
+  const segments=[
+    {label:'Pago',val:paid,color:'#3D5C4A'},
+    {label:'Pendente',val:pending,color:'#B03030'},
+  ];
+  const gap=0.018;
+  let start=-Math.PI/2;
+  segments.forEach(seg=>{
+    if(seg.val<=0)return;
+    const slice=(seg.val/total)*Math.PI*2 - gap;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,start+gap/2,start+gap/2+slice);
+    ctx.closePath();
+    ctx.fillStyle=seg.color;
+    ctx.fill();
+    start+=slice+gap;
+  });
+  // Buraco central
+  ctx.beginPath();ctx.arc(cx,cy,44,0,Math.PI*2);
+  ctx.fillStyle='white';ctx.fill();
+  // Percentual central
+  const pct=total>0?Math.round((paid/total)*100):0;
+  ctx.fillStyle='#1A1510';
+  ctx.font='bold 20px Cormorant Garamond, serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(pct+'%',cx,cy-6);
+  ctx.font='10px DM Sans, sans-serif';
+  ctx.fillStyle='#7A6E62';
+  ctx.fillText('pago',cx,cy+12);
+
+  // Legenda
+  const fmt2=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
+  legend.innerHTML=segments.map(s=>`
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${s.color}"></div>
+      <div class="legend-label">${s.label}</div>
+      <div>
+        <div class="legend-val">${fmt2(s.val)}</div>
+        <div class="legend-pct">${total>0?Math.round((s.val/total)*100):0}%</div>
+      </div>
+    </div>`).join('');
 }
 
 function renderCatFilter(){
@@ -1132,6 +1355,9 @@ function renderFinSummary(){
     <div class="fin-card paid"><div class="fin-card-label">Total Pago</div><div class="fin-card-val">${fmt(paid)}</div></div>
     <div class="fin-card pending"><div class="fin-card-label">Total Pendente</div><div class="fin-card-val">${fmt(pending)}</div></div>`;
 
+  // ── Gráfico de pizza ──
+  drawPieChart(paid, pending, total);
+
   const byCat={};
   finRows.forEach(r=>{if(!byCat[r.cat])byCat[r.cat]={total:0,paid:0};byCat[r.cat].total+=r.total||0;byCat[r.cat].paid+=r.paid||0});
   const totalAll=finRows.reduce((a,r)=>a+(r.total||0),0);
@@ -1143,13 +1369,13 @@ function renderFinSummary(){
     <div class="tf-row"><span class="tf-lbl" style="font-size:13px;color:var(--gold-light)">TOTAL GERAL</span><div style="text-align:right"><div class="tf-val tf-val-total">${fmt(totalAll)}</div><div style="font-size:11px;margin-top:4px"><span class="tf-val-paid">✓ ${fmt(paidAll)}</span><span style="color:rgba(255,255,255,.25);margin:0 8px">|</span><span class="tf-val-pending">↗ ${fmt(totalAll-paidAll)}</span></div></div></div>`;
 }
 
-async function updateFin(id,field,value){
+function updateFin(id,field,value){
   const row=finRows.find(r=>r.id===id);if(!row)return;
   if(field==='cat'&&value==='__new__'){const n=prompt('Nome da nova categoria:');if(!n){renderFinTable();return}row.cat=n.trim()}else{row[field]=value}
-  await saveFin();renderFinTable();
+  saveFin();renderFinTable();
 }
-async function delFinRow(id){if(!confirm('Remover?'))return;finRows=finRows.filter(r=>r.id!==id);await saveFin();renderFinTable()}
-async function addFinRow(){finRows.push({id:nextId++,name:'Novo item',cat:'Outros',total:0,paid:0});await saveFin();renderFinTable()}
+function delFinRow(id){if(!confirm('Remover?'))return;finRows=finRows.filter(r=>r.id!==id);saveFin();renderFinTable()}
+function addFinRow(){finRows.push({id:nextId++,name:'Novo item',cat:'Outros',total:0,paid:0});saveFin();renderFinTable()}
 
 // ════════ CHECKLIST LUA DE MEL ════════
 const CL_DATA=[
@@ -1270,7 +1496,7 @@ function renderChecklist(){
       const k=`cl_${gi}_${ii}`;
       const label=document.createElement('label');label.className='cl-item';
       const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!clState[k];
-      cb.addEventListener('change',async()=>{clState[k]=cb.checked;await ss(SK_CL,clState);updateClProgress()});
+      cb.addEventListener('change',async()=>{clState[k]=cb.checked;ss(SK_CL,clState);updateClProgress()});
       const chk=document.createElement('span');chk.className='cl-check';chk.textContent='✓';
       const txt=document.createElement('span');txt.textContent=item;
       label.appendChild(cb);label.appendChild(chk);label.appendChild(txt);
@@ -1296,19 +1522,242 @@ function updateClProgress(){
 }
 
 // ════════ INIT ════════
-async function init(){
-  // load from shared storage
-  const[w,t,f,cl]=await Promise.all([sg(SK_W),sg(SK_T),sg(SK_F),sg(SK_CL)]);
-  if(w)weeks=w;
-  if(t)taskDone=t;
-  if(f){finRows=f;nextId=finRows.reduce((a,r)=>Math.max(a,r.id),0)+1}
-  if(cl)clState=cl;
+
+// ════════ CONVIDADOS ════════
+const SK_G = 'wed_guests_v1';
+
+const GUESTS_DEFAULT = [
+  {id:1,nome:"Lorenzzo",categoria:"Criança",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:2,nome:"Telma",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:true},
+  {id:3,nome:"Manoela",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:true},
+  {id:4,nome:"Kaio",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:5,nome:"Patricia",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:false},
+  {id:6,nome:"Robinson",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:false},
+  {id:7,nome:"Danilo",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:false},
+  {id:8,nome:"Fatima",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:true},
+  {id:9,nome:"Pablo",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:false},
+  {id:10,nome:"Erica",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:true,essencial:true},
+  {id:11,nome:"Dona Maria",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:true},
+  {id:12,nome:"Cuidadora",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:13,nome:"Tania",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:true},
+  {id:14,nome:"Nuno",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:15,nome:"Camila",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:16,nome:"Renato",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:17,nome:"Lorena",categoria:"Criança",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:18,nome:"Bruna",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:19,nome:"Felippe",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:20,nome:"Ana",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:21,nome:"Bento",categoria:"Criança",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:22,nome:"Guto",categoria:"Criança",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:23,nome:"Vó",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:24,nome:"Vanda",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:25,nome:"Zé",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:true},
+  {id:26,nome:"Ettinho",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:27,nome:"Vanessa",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:28,nome:"Marcos",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:29,nome:"Eduardo",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:30,nome:"Bruna F.",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:31,nome:"João Pedro",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:32,nome:"Laura",categoria:"Criança",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:33,nome:"Marcia",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:34,nome:"Alfredo",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:35,nome:"Tia Joana",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:36,nome:"Dona Valentina",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:37,nome:"Andreia",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:38,nome:"Laercio",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:39,nome:"Maria Luiza",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:40,nome:"Namorado Maria Luiza",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:41,nome:"Vitor",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:42,nome:"Thaminss",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:43,nome:"Maria Eduarda",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:44,nome:"Ruan",categoria:"Adulto",grupo:"Família",lista:"Noiva",confirmado:false,essencial:false},
+  {id:45,nome:"Gabriela",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:46,nome:"Gustavo P.",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:47,nome:"Giovanna",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:48,nome:"Giovanni",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:49,nome:"Diego Dartora",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:50,nome:"Beatriz",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:51,nome:"Amanda",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:52,nome:"Leticia",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:53,nome:"Samuel",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:54,nome:"Pamela",categoria:"Adulto",grupo:"Trabalho",lista:"Noiva",confirmado:false,essencial:false},
+  {id:55,nome:"Paulo - Marido Pamela",categoria:"Adulto",grupo:"Trabalho",lista:"Noiva",confirmado:false,essencial:false},
+  {id:56,nome:"Gustavo - Filho Pamela",categoria:"Criança",grupo:"Trabalho",lista:"Noiva",confirmado:true,essencial:false},
+  {id:57,nome:"Michele",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:58,nome:"Paulo P.",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:59,nome:"Deyvid",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:60,nome:"Ana C.",categoria:"Adulto",grupo:"Amigos",lista:"Noiva",confirmado:false,essencial:false},
+  {id:61,nome:"Felipe Alemão",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:62,nome:"Carla",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:63,nome:"Cecilia",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:64,nome:"Lucas",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:65,nome:"Diego Dantas",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:true,essencial:false},
+  {id:66,nome:"Bruna Dantas",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:67,nome:"Nikki Dantas",categoria:"Bebê",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:68,nome:"Caio Rossi",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:69,nome:"Ticiane Rossi",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:70,nome:"Bruno Laghi",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:71,nome:"Roberto Amancio",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:72,nome:"Eliane Amancio",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:73,nome:"Joyce Fabrello",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:74,nome:"Adilson Fabrello",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:75,nome:"Rose Menini",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:76,nome:"Marcos Menini",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:77,nome:"Ediliane Cortez",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:78,nome:"Jean Cortez",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:79,nome:"Cassia",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:80,nome:"Daniel Tio",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:81,nome:"Gisele",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:82,nome:"Rodrigo",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:83,nome:"Celia",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:84,nome:"Mara",categoria:"Adulto",grupo:"Família",lista:"Noivo",confirmado:false,essencial:false},
+  {id:85,nome:"Laura Fernandes",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:86,nome:"Namorado Laura",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:87,nome:"Marcia Laura",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:88,nome:"Marcel Dantas",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:89,nome:"Rosangela",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:90,nome:"Laura - Filha da Ro",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:91,nome:"Margarete",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:92,nome:"Milton",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:93,nome:"Gabriel",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:94,nome:"Namorada Laura",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:95,nome:"Bianca",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+  {id:96,nome:"Andre",categoria:"Adulto",grupo:"Trabalho",lista:"Noivo",confirmado:true,essencial:false},
+  {id:97,nome:"Bernardo",categoria:"Criança",grupo:"Trabalho",lista:"Noivo",confirmado:false,essencial:false},
+  {id:98,nome:"Pedro",categoria:"Bebê",grupo:"Trabalho",lista:"Noivo",confirmado:false,essencial:false},
+  {id:99,nome:"Vinicius",categoria:"Adulto",grupo:"Trabalho",lista:"Noivo",confirmado:false,essencial:false},
+  {id:100,nome:"Antony",categoria:"Adulto",grupo:"Amigos",lista:"Noivo",confirmado:false,essencial:false},
+];
+
+let guests = [...GUESTS_DEFAULT];
+let gNextId = 101;
+
+function saveGuests(){ ss(SK_G, guests); }
+
+function loadGuests(){
+  const g = sg(SK_G);
+  if(g && Array.isArray(g)){ guests = g; gNextId = guests.reduce((a,r)=>Math.max(a,r.id||0),0)+1; }
+}
+
+function renderGuestSummary(){
+  const total = guests.length;
+  const conf = guests.filter(g=>g.confirmado).length;
+  const ess = guests.filter(g=>g.essencial).length;
+  const adult = guests.filter(g=>g.categoria==='Adulto').length;
+  const child = guests.filter(g=>g.categoria==='Criança').length;
+  const bebe = guests.filter(g=>g.categoria==='Bebê').length;
+
+  document.getElementById('guestSummary').innerHTML = `
+    <div class="guest-card total"><div class="guest-card-num">${total}</div><div class="guest-card-lbl">Total</div></div>
+    <div class="guest-card conf"><div class="guest-card-num">${conf}</div><div class="guest-card-lbl">Confirmados</div></div>
+    <div class="guest-card ess"><div class="guest-card-num">${ess}</div><div class="guest-card-lbl">Essenciais</div></div>
+    <div class="guest-card adult"><div class="guest-card-num">${adult}</div><div class="guest-card-lbl">Adultos</div></div>
+    <div class="guest-card child"><div class="guest-card-num">${child+bebe}</div><div class="guest-card-lbl">Crianças+Bebês</div></div>`;
+
+  const confPct = total ? Math.round(conf/total*100) : 0;
+  const essPct = total ? Math.round(ess/total*100) : 0;
+  document.getElementById('guestProgBar').innerHTML = `
+    <div class="guest-prog-row">
+      <span class="gpr-lbl">✅ Confirmados</span>
+      <div class="gpr-bar"><div class="gpr-fill conf" style="width:${confPct}%"></div></div>
+      <span class="gpr-num">${conf}/${total}</span>
+    </div>
+    <div class="guest-prog-row">
+      <span class="gpr-lbl">⭐ Essenciais</span>
+      <div class="gpr-bar"><div class="gpr-fill ess" style="width:${essPct}%"></div></div>
+      <span class="gpr-num">${ess}/${total}</span>
+    </div>
+`;
+}
+
+function renderGuests(){
+  const search = (document.getElementById('guestSearch')||{}).value||'';
+  const fCat = (document.getElementById('gfCategoria')||{}).value||'';
+  const fStatus = (document.getElementById('gfStatus')||{}).value||'';
+
+  let filtered = guests.filter(g=>{
+    if(search && !g.nome.toLowerCase().includes(search.toLowerCase())) return false;
+    if(fCat && g.categoria !== fCat) return false;
+
+    if(fStatus==='confirmado' && !g.confirmado) return false;
+    if(fStatus==='essencial' && !g.essencial) return false;
+    if(fStatus==='pendente' && g.confirmado) return false;
+    return true;
+  });
+
+  const body = document.getElementById('guestBody');
+  if(!body) return;
+  body.innerHTML = '';
+
+  filtered.forEach(g => {
+    const catClass = g.categoria==='Adulto'?'cat-adulto':g.categoria==='Criança'?'cat-crianca':'cat-bebe';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input class="guest-name-input" value="${g.nome}" onchange="updateGuest(${g.id},'nome',this.value)"></td>
+      <td><span class="cat-badge ${catClass}">${g.categoria}</span></td>
+      <td>
+        <div class="g-toggle ${g.confirmado?'on-conf':''}" onclick="toggleGuest(${g.id},'confirmado')" title="Confirmado">
+          ${g.confirmado?'✓':''}
+        </div>
+      </td>
+      <td>
+        <div class="g-toggle ${g.essencial?'on-ess':''}" onclick="toggleGuest(${g.id},'essencial')" title="Essencial">
+          ${g.essencial?'⭐':''}
+        </div>
+      </td>
+      <td><span class="g-del" onclick="deleteGuest(${g.id})">×</span></td>`;
+    body.appendChild(tr);
+  });
+
+  renderGuestSummary();
+}
+
+function toggleGuest(id, field){
+  const g = guests.find(g=>g.id===id);
+  if(!g) return;
+  g[field] = !g[field];
+  saveGuests(); renderGuests();
+}
+
+function updateGuest(id, field, value){
+  const g = guests.find(g=>g.id===id);
+  if(!g) return;
+  g[field] = value;
+  saveGuests();
+}
+
+function deleteGuest(id){
+  if(!confirm('Remover convidado?')) return;
+  guests = guests.filter(g=>g.id!==id);
+  saveGuests(); renderGuests();
+}
+
+function addGuest(){
+  guests.push({id:gNextId++, nome:'Novo convidado', categoria:'Adulto', grupo:'Amigos', lista:'Noivo', confirmado:false, essencial:false});
+  saveGuests(); renderGuests();
+  // Scrolla para o final da tabela
+  setTimeout(()=>{
+    const rows = document.querySelectorAll('#guestBody tr');
+    if(rows.length) rows[rows.length-1].scrollIntoView({behavior:'smooth'});
+  }, 100);
+}
+
+function init(){
+  try {
+    const w=sg(SK_W), t=sg(SK_T), f=sg(SK_F), cl=sg(SK_CL);
+    if(w && Array.isArray(w)) weeks=w;
+    if(t && typeof t==='object') taskDone=t;
+    if(f && Array.isArray(f)){finRows=f;nextId=finRows.reduce((a,r)=>Math.max(a,r.id||0),0)+1}
+    if(cl && typeof cl==='object') clState=cl;
+  } catch(e){
+    console.warn('storage load error:', e);
+  }
+  loadGuests();
   renderTimeline();
   renderFinTable();
   renderChecklist();
+  renderGuests();
   document.getElementById('progBar').style.display='flex';
-  // Sincronização em tempo real via Firebase
-  startRealtimeSync();
 }
 init();
 
@@ -1427,38 +1876,38 @@ function getStateSnapshot(){
   return {cronograma:wSnap,financeiro:fSnap,checklist:clSnap};
 }
 
-async function executeActions(actions){
+function executeActions(actions){
   const done=[];
   for(const a of actions){
     try{
       if(a.type==='add_task'){
         const wi=weeks.findIndex(w=>w.label.toLowerCase().includes((a.week||'').toLowerCase())||w.dates.toLowerCase().includes((a.week||'').toLowerCase()));
-        if(wi>=0){weeks[wi].tasks.push({text:a.text,cat:a.cat||'Geral',type:a.taskType||'do'});await saveWeeks();renderTimeline();done.push(`Tarefa adicionada em "${weeks[wi].label}"`);}
+        if(wi>=0){weeks[wi].tasks.push({text:a.text,cat:a.cat||'Geral',type:a.taskType||'do'});saveWeeks();renderTimeline();done.push(`Tarefa adicionada em "${weeks[wi].label}"`);}
         else done.push(`Semana "${a.week}" não encontrada`);
       }
       else if(a.type==='remove_task'){
         let found=false;
-        for(let wi=0;wi<weeks.length;wi++){const ti=weeks[wi].tasks.findIndex(t=>t.text.toLowerCase().includes(a.text.toLowerCase()));if(ti>=0){weeks[wi].tasks.splice(ti,1);await saveWeeks();renderTimeline();done.push('Tarefa removida');found=true;break;}}
+        for(let wi=0;wi<weeks.length;wi++){const ti=weeks[wi].tasks.findIndex(t=>t.text.toLowerCase().includes(a.text.toLowerCase()));if(ti>=0){weeks[wi].tasks.splice(ti,1);saveWeeks();renderTimeline();done.push('Tarefa removida');found=true;break;}}
         if(!found)done.push(`Tarefa "${a.text}" não encontrada`);
       }
       else if(a.type==='toggle_task'){
         let found=false;
-        for(let wi=0;wi<weeks.length;wi++){const ti=weeks[wi].tasks.findIndex(t=>t.text.toLowerCase().includes(a.text.toLowerCase()));if(ti>=0){const id=tid(wi,ti);taskDone[id]=!taskDone[id];await saveTasks();renderTimeline();done.push(`Tarefa ${taskDone[id]?'concluída':'reaberta'}: "${weeks[wi].tasks[ti].text.substring(0,35)}..."`);found=true;break;}}
+        for(let wi=0;wi<weeks.length;wi++){const ti=weeks[wi].tasks.findIndex(t=>t.text.toLowerCase().includes(a.text.toLowerCase()));if(ti>=0){const id=tid(wi,ti);taskDone[id]=!taskDone[id];saveTasks();renderTimeline();done.push(`Tarefa ${taskDone[id]?'concluída':'reaberta'}: "${weeks[wi].tasks[ti].text.substring(0,35)}..."`);found=true;break;}}
         if(!found)done.push(`Tarefa "${a.text}" não encontrada`);
       }
       else if(a.type==='add_week'){
         weeks.push({label:a.label,dates:a.dates||'',urgency:a.urgency||'normal',tasks:[]});
-        await saveWeeks();renderTimeline();done.push(`Bloco "${a.label}" adicionado`);
+        saveWeeks();renderTimeline();done.push(`Bloco "${a.label}" adicionado`);
       }
       else if(a.type==='add_fin_row'){
         const existing=finRows.find(r=>r.name.toLowerCase()===(a.name||'').toLowerCase());
         if(existing){if(a.total!==undefined)existing.total=a.total;if(a.paid!==undefined)existing.paid=a.paid;done.push(`Atualizado: ${existing.name}`);}
         else{finRows.push({id:nextId++,name:a.name||'Novo',cat:a.cat||'Outros',total:a.total||0,paid:a.paid||0});done.push(`Adicionado: ${a.name}`);}
-        await saveFin();renderFinTable();
+        saveFin();renderFinTable();
       }
       else if(a.type==='update_fin_row'){
         const row=finRows.find(r=>r.name.toLowerCase().includes((a.name||'').toLowerCase()));
-        if(row){if(a.total!==undefined)row.total=a.total;if(a.paid!==undefined)row.paid=a.paid;if(a.cat)row.cat=a.cat;await saveFin();renderFinTable();done.push(`Atualizado: ${row.name}`);}
+        if(row){if(a.total!==undefined)row.total=a.total;if(a.paid!==undefined)row.paid=a.paid;if(a.cat)row.cat=a.cat;saveFin();renderFinTable();done.push(`Atualizado: ${row.name}`);}
         else done.push(`Fornecedor "${a.name}" não encontrado`);
       }
       else if(a.type==='toggle_checklist'){
@@ -1466,7 +1915,7 @@ async function executeActions(actions){
         for(let gi=0;gi<CL_DATA.length;gi++){
           for(let ii=0;ii<CL_DATA[gi].items.length;ii++){
             if(CL_DATA[gi].items[ii].toLowerCase().includes(a.text.toLowerCase())){
-              const k=`cl_${gi}_${ii}`;clState[k]=!clState[k];await ss(SK_CL,clState);
+              const k=`cl_${gi}_${ii}`;clState[k]=!clState[k];ss(SK_CL,clState);
               _lastData = {..._lastData, checklist: JSON.parse(JSON.stringify(clState))};
               renderChecklist();
               done.push(`Checklist ${clState[k]?'marcado':'desmarcado'}: "${CL_DATA[gi].items[ii].substring(0,40)}"`);
